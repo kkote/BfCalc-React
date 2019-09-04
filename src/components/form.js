@@ -29,7 +29,10 @@ class Form extends React.Component {
 
 
   render() {
-    return (<div className="">
+    return (
+        <div style={{width: 300}} >   
+        <div class="panel panel-default">
+   
         <header>
             <h4>Your Measurements</h4>
         </header>
@@ -78,7 +81,9 @@ class Form extends React.Component {
 
         </form>
 
-    </div>);
+    </div>
+    </div>
+    );
   }
 }
 
