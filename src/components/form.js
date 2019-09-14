@@ -1,90 +1,102 @@
 import React from "react";
 
 class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: "Python"
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  constructor() {
+    super();
+    this.state = {};
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  formInputInfo = {
-    "name":"John",
-    "age":30,
-    "inputs": [
-        { "name":"date", 'type':'date'},
-      { "name":"gender", 'type':'radio', "genders":[ "male", "female" ] },
-      { "name":"age", 'type':'number', 'step':'1', 'min':'18', 'max':'99' },
-      { "name":"weight", 'type':'number', 'step':'any', 'min':'90', 'max':'600' },
-      { "name":"height", 'type':'number', 'step':'1', 'min':'50', 'max':'100' },
-      { "name":"hips", 'type':'number', 'step':'any', 'min':'25', 'max':'60' },
-      { "name":"waist", 'type':'number', 'step':'any', 'min':'18', 'max':'50' },
-      { "name":"neck", 'type':'number', 'step':'any', 'min':'8', 'max':'25' },
-    ]
-   } 
-
+  handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    
+    
+    this.setState({
+      res: stringifyFormData(data),
+    });
+    // fetch('/api/form-submit-url', {
+    //   method: 'POST',
+    //   body: data,
+    // });
+  }
 
   render() {
     return (
-        <div style={{width: 300}} >   
-        <div class="panel panel-default">
-   
-        <header>
+        <div>
+          <header>
             <h4>Your Measurements</h4>
         </header>
-        <form>
-            <fieldset id="gender">
-                <label>Male:
-            <input type="radio" defaultValue="male" name="genderInput" onchange="{this.handleChange}" />
-                </label>
+        <hr></hr>
+        <br></br>
+        <form onSubmit={this.handleSubmit}>
 
-                <label>Female:
-            <input type="radio" defaultValue="female" name="genderInput" onchange="{this.handleChange}" />
-                </label>
-
-            </fieldset>
-
-            <fieldset id="general">
-                <label>Date
-            <input className="formControl" id="dateInput" name="date" required type="date" defaultValue />
-                </label>
-                <label >Age<input className="formControl" id="ageInput" name="age" placeholder required step={1} type="number" defaultValue min={18} max={99} /></label>
-
-            </fieldset>
-
-            <fieldset id="genStat">
-
-                <label >Weight<input className="formControl" id="weightInput" name="weight" required step="any" type="number" defaultValue /></label>
-
-                <label >Feet<input className="formControl" id="feetInput" name="feet" placeholder required step={1} type="number" defaultValue min={4} max={7} /></label>
-
-                <label >Inches<input className="formControl" id="inchInput" name="inch" placeholder required step type="number" defaultValue min={0} max={11} /></label>
-
-            </fieldset>
+          <label htmlFor="female">Female</label>
+          <input id="female" name="gender" type="radio" value={'female'}/>
+          <label htmlFor="male">Male</label>
+          <input id="male" name="gender" type="radio" value={'male'}/>
+          <br></br>
 
 
-            <fieldset id="stats">
+         {/* <label htmlFor="date">Date</label>
+          <input id="date" name="date" type="date" />  */}
 
-                <label >Hips<input className="formControl" id="hipsInput" name="hips" placeholder required step="any" type="number" defaultValue min={25} max={50} /></label>
+          <label htmlFor="age">Age</label>
+          <input id="age" name="age" type="number" value={28}/>
 
-                <label >Waist<input className="formControl" id="waistInput" name="waist" placeholder required step="any" type="number" defaultValue min={18} max={50} /></label>
+          <label htmlFor="weight">Weight</label>
+          <input id="weight" name="weight" type="number" value={115} />
 
-                <label >Neck <input className="formControl" id="neckInput" name="neck" onsubmit="myScript" placeholder required step="any" type="number" defaultValue min={8} max={25} /></label>
+          <br></br>
+          <label htmlFor="feet">Feet</label>
+          <input id="feet" name="feet" type="number" value={5}/>
 
-            </fieldset>
+          <label htmlFor="inches">Inches</label>
+          <input id="inches" name="inches" type="number" value={3} />
+
+          <br></br>
+
+          <label htmlFor="hips">Hips</label>
+          <input id="hips" name="hips" type="number" value={34}/>
+
+          <label htmlFor="waist">Waist</label>
+          <input id="waist" name="waist" type="number" value={25}/>
+
+          <label htmlFor="neck">Neck</label>
+          <input id="neck" name="neck" type="number" value={12}/>
+
+          <br></br>
 
 
+          <label htmlFor="none">None</label>
+          <input id="none" name="activity" type="radio" value={1.2}/>
+          <label htmlFor="normal">Normal</label>
+          <input id="normal" name="activity" type="radio" value={1.55}/>
+          <br></br>
 
+          <button>Send </button>
         </form>
-
-    </div>
-    </div>
+        
+        {this.state.res && (
+            <div className="res-block">
+            <h3>Data to be sent:</h3>
+            <pre>FormData {this.state.res}</pre>
+            </div>
+        )}
+        </div>
     );
   }
+}
+
+
+
+
+function stringifyFormData(fd) {
+  const data = {};
+    for (let key of fd.keys()) {
+      data[key] = fd.get(key);
+  }
+  return JSON.stringify(data, null, 2);
 }
 
 export default Form;
