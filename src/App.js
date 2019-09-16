@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Login />
+      {/*<Login />*/}
       <br></br>
 
       <div className='main'>

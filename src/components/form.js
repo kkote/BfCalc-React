@@ -32,7 +32,7 @@ class Form extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
           <label htmlFor="female">Female</label>
-          <input id="female" name="gender" type="radio" value={'female'}/>
+          <input id="female" name="gender" type="radio" value={'female'} Selected/>
           <label htmlFor="male">Male</label>
           <input id="male" name="gender" type="radio" value={'male'}/>
           <br></br>

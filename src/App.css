@@ -1,12 +1,81 @@
+
+body {
+  font-family: 'Roboto Slab', sans-serif;
+  background: white;
+  color: #484848;
+  padding: 40px;
+}
+
+input {
+  /* display: block; */
+  display: inline-block;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #cfcfcf;
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+pre, code {
+  font-family: 'Roboto Mono', Monaco;
+}
+
+button {
+  cursor: pointer;
+  padding: 12px;
+  background: #999;
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  border-bottom: 2px solid #797979;
+  
+  &:hover {
+    background-color: #a1a1a1;
+  }
+
+  &:active {
+    background-color: #888;
+  }
+}
+
+form {
+  display: inline-block;
+  margin-right: 50px;
+  vertical-align: top;
+}
+
+.res-block {
+  display: inline-block;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 #calcForm {
   font-size: 18px !important;
 }
 
-body {
+/* body {
   font-size: 16px !important;
   font-family: 'Roboto', sans-serif !important;
   color: #555 !important;
-}
+} */
 
 h4 {
   margin-top: 5px !important;
@@ -127,12 +196,12 @@ label {
   padding-left: 0 !important;
 }
 
-label {
+/* label {
   padding: 5px;
   background: whitesmoke;
   border: .5px solid #d9e2ef;
   width: 100%;
-}
+} */
 
 .formControl::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -152,9 +221,9 @@ label {
   color: red;
 }
 
-input[type=radio] {
+/* input[type=radio] {
   margin: 4px 10px 0 !important;
-}
+} */
 
 .btn-warning {
   color: #fff;
@@ -346,10 +415,10 @@ input[type=radio] {
   flex-direction: column;
 }
 
-hr {
+/* hr {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
-}
+} */
 
 .panel-heading {
   background-color: white !important;
