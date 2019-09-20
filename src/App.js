@@ -9,32 +9,64 @@ import Table from "./components/table";
 import Stats from "./components/statDisplay";
 import MyForm from "./components/exampleform";
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      {/*<Login />*/}
-      <br></br>
 
-      <div className='main'>
-      <hr/>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-      <Form />  
+    this.state = {
+      data: 
+        [
+          {
+            date: "2019",
+            weight: "112"
+          }
+    ],
+      entries: [
+        {
+          date: "2017-07-07",
+          weight: "125"
+        },
+        {
+          date: "2018-08-08",
+          weight: "130"
+        },
+        
+      ],
+      allUsers: [
+        {
+          username: "username",
+          password: "password"
+        }
+      ],
+      error: ""
+    };
+  }
 
-       <hr/>
-      <br></br>
 
-       <hr/>
-       { /*} <Stats />
-        <Chart />
-        <Table />
+  render() {
 
-  <Footer />  */}
+    return (
+      <div className="App">
+        <Header />
+        {/*<Login />*/}
+        <br></br>
+        <div className='main'>
+        <hr/>
+        <Form />  
+         <hr/>
+        <br></br>
+  
+         <hr/>
+         <Stats lists={this.state.data} />
+         { /*} 
+          <Chart />
+          <Table />
+    <Footer />  */}
+        </div>
       </div>
+          );
+  }
+}
 
-
-    </div>
-        );
-            }
-            
-            export default App;
+export default App;

@@ -10,11 +10,22 @@ class Form extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.target);
-    
+    console.log(data)
+    const stringdata = stringifyFormData(data);
+    console.log(stringdata)
+    const datadata = JSON.parse(stringdata);    
+    console.log(datadata)
+    const dataone = datadata.age;    
+    console.log(dataone)
+    const bmi = ((datadata.weight / 3969) * 703).toPrecision(3);
     
     this.setState({
-      res: stringifyFormData(data),
+      res: stringdata,
+      data: datadata,
+      one: datadata.age*datadata.weight,
+      bmi: bmi,
     });
+    
     // fetch('/api/form-submit-url', {
     //   method: 'POST',
     //   body: data,
@@ -83,6 +94,15 @@ class Form extends React.Component {
             <pre>FormData {this.state.res}</pre>
             </div>
         )}
+        {this.state.bmi && (
+             <div className="res-block">
+             <h3>Data one:</h3>
+             <pre>bmi {this.state.bmi} </pre>
+             </div>
+        )}
+         
+           
+       
         </div>
     );
   }
