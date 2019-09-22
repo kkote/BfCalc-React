@@ -8,6 +8,7 @@ class Stats extends React.Component {
       this.state = {
         selectedProduct: {},
         list: this.props.list,
+        books: this.props.books,
         error: "error"
       };
       }
@@ -15,44 +16,66 @@ class Stats extends React.Component {
   
     render() {
 
-        const List = ({ lists }) => (
+      const List = ({ lists }) => (
 
-            Object.keys(this.props.lists).map(key => (
-              <Stats
-              key={key}
-              item={this.props.lists[key]}
-              />
-            ))
-            );
-  
-      const Stats = ({ key, item }) => 
-         (
-            <div className="statGroup">
-                <header>
-                    <h4>Your Stats</h4>
-                </header>
-                <div className="statItem">
-                    Body Fat Percentage
-                    {item.weight}
-            <span id="displayInput" /> <span id="displayBfRange" />
-                </div>
-                <div className="statItem">
-                    Body Mass Index <span id="displayBmi" /> <span id="displayBmiRange" />
-                </div>
-                <div className="statItem">
-                    Body Mass Distribution <span id="displayLean" /> <span id="displayFatMass" />
-                </div>
-                <div className="statItem">
-                    Total Daily Energy Expenditure <span id="displayTdee" />
-                </div>
-
-     
-
-            </div>
+        Object.keys(this.props.lists).map(key => (
+          <Stats
+            key={key}
+            item={this.props.lists[key]}
+          />
+        ))
       );
+
+      const Stats = ({ item }) =>
+        (
+          <div className="statGroup">
+            <header>
+              <h4>Your Stats</h4>
+            </header>
+            <div className="statItem">
+              <h5>Body Fat Percentage</h5>
+              {item.bf}
+            </div>
+            <div className="statItem">
+              <h5>Body Mass Index</h5>
+              {item.bmi}
+            </div>
+            <div className="statItem">
+              <h5>Total Daily Energy Expenditure</h5>
+              {item.tdee}
+            </div>
+          </div>
+        );
+
+      const BookList = ({ lists }) => (
+
+        Object.keys(this.props.books).map(key => (
+          <Each
+            key={key}
+            item={this.props.books[key]}
+          />
+        ))
+      );
+
+      const Each = ({ item }) =>
+        (
+          <div className="statGroup">
+            {item.id}
+            {item.title}
+            {item.author}
+          </div>
+        );
+
+
       
       return (
-        <List />
+        <div>
+          <List />
+          <BookList />
+
+
+        </div>
+        
       );
     }
   }

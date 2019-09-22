@@ -43,9 +43,9 @@ class Form extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
           <label htmlFor="female">Female</label>
-          <input id="female" name="gender" type="radio" value={'female'} Selected/>
+          <input id="female" name="gender" type="radio" defaultValue={'female'} selected/>
           <label htmlFor="male">Male</label>
-          <input id="male" name="gender" type="radio" value={'male'}/>
+          <input id="male" name="gender" type="radio" defaultValue={'male'}/>
           <br></br>
 
 
@@ -53,36 +53,36 @@ class Form extends React.Component {
           <input id="date" name="date" type="date" />  */}
 
           <label htmlFor="age">Age</label>
-          <input id="age" name="age" type="number" value={28}/>
+          <input id="age" name="age" type="number" defaultValue={28}/>
 
           <label htmlFor="weight">Weight</label>
-          <input id="weight" name="weight" type="number" value={115} />
+          <input id="weight" name="weight" type="number" defaultValue={115} />
 
           <br></br>
           <label htmlFor="feet">Feet</label>
-          <input id="feet" name="feet" type="number" value={5}/>
+          <input id="feet" name="feet" type="number" defaultValue={5}/>
 
           <label htmlFor="inches">Inches</label>
-          <input id="inches" name="inches" type="number" value={3} />
+          <input id="inches" name="inches" type="number" defaultValue={3} />
 
           <br></br>
 
           <label htmlFor="hips">Hips</label>
-          <input id="hips" name="hips" type="number" value={34}/>
+          <input id="hips" name="hips" type="number" defaultValue={34}/>
 
           <label htmlFor="waist">Waist</label>
-          <input id="waist" name="waist" type="number" value={25}/>
+          <input id="waist" name="waist" type="number" defaultValue={25}/>
 
           <label htmlFor="neck">Neck</label>
-          <input id="neck" name="neck" type="number" value={12}/>
+          <input id="neck" name="neck" type="number" defaultValue={12}/>
 
           <br></br>
 
 
           <label htmlFor="none">None</label>
-          <input id="none" name="activity" type="radio" value={1.2}/>
+          <input id="none" name="activity" type="radio" defaultValue={1.2}/>
           <label htmlFor="normal">Normal</label>
-          <input id="normal" name="activity" type="radio" value={1.55}/>
+          <input id="normal" name="activity" type="radio" defaultValue={1.55}/>
           <br></br>
 
           <button>Send </button>
