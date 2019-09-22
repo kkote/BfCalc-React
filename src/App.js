@@ -3,10 +3,10 @@ import './App.css';
 import Header from "./components/header";
 import Form from "./components/form";
 import Stats from "./components/statDisplay";
+import Table from "./components/table";
 {/*import Footer from "./components/footer";
 import Login from "./components/login";
 import Chart from "./components/chart";
-import Table from "./components/table";
 import MyForm from "./components/exampleform"; */}
 
 
@@ -16,38 +16,23 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      currentCalc: 
+      stat:
         [
           {
-            bmi: "19.8",
-            bf: "20.1",
-            tdee: "1855"
+            bmi: 19.8,
+            bf: 20.1,
+            tdee: 1855
           }
-    ],
-      entries: [
-        {
-          date: "2017-07-07",
-          weight: "115",
-          bmi: "20.3",
-          bf: "21.2",
-          tdee: "1855"
-        },
-        {
-          date: "2018-08-08",
-          weight: "130",
-          bmi: "20",
-          bf: "21",
-          tdee: "1800"
-        },
-        
-      ],
+        ],
       error: "",
       data: [
-        {'id': 0,
-     'title': 'A Fire Upon the Deep',
-     'author': 'Vernor Vinge',
-     'first_sentence': 'The coldsleep itself was dreamless.',
-     'year_published': '1992'}
+        {
+          'id': 1,
+          'date': 'MonthYear',
+          'bmi': '00',
+          'bf': '00',
+          'weight': '00'
+        }
       ],
     };
   }
@@ -62,7 +47,7 @@ class App extends React.Component {
       return response;
     }
 
-    fetch(``).then(handleErrors).then(res => res.json()).then(result => {
+    fetch(`https://8qkziweyo4.execute-api.us-west-2.amazonaws.com/dev/api/user/stats`).then(handleErrors).then(res => res.json()).then(result => {
       console.log(result)
 
       var resulttext = result.items;
@@ -82,29 +67,34 @@ class App extends React.Component {
 
   render() {
 
+    const { stat, data } = this.state;
+
     return (
       <div className="App">
         <Header />
         {/*<Login />*/}
         <br></br>
         <div className='main'>
-        <hr/>
-        <Form />  
-         <hr/>
-        <br></br>
-        <Stats 
-        lists={this.state.currentCalc} 
-        books={this.state.data}
-        />
-         <hr/>
-         
-         { /*} 
+          <hr />
+          <Form />
+          <hr />
+          <br></br>
+          <Stats
+            bmi={data[0].bmi}
+            bf={stat[0].bf}
+            tdee={stat[0].tdee}
+          />
+          <hr />
+          <Table
+            books={this.state.data}
+          />
+
+          { /*} 
           <Chart />
-          <Table />
     <Footer />  */}
         </div>
       </div>
-          );
+    );
   }
 }
 
