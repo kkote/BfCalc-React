@@ -39,10 +39,12 @@ class Form extends React.Component {
         <br></br>
         <form onSubmit={this.handleSubmit}>
 
+          <fieldset>
           <label htmlFor="female">Female</label>
-          <input id="female" name="gender" type="radio" defaultValue={'female'} selected/>
+          <input id="female" name="gender" type="radio" value={'female'} selected/>
           <label htmlFor="male">Male</label>
-          <input id="male" name="gender" type="radio" defaultValue={'male'}/>
+          <input id="male" name="gender" type="radio" value={'male'}/>
+          </fieldset>
           <br></br>
 
 
@@ -75,11 +77,23 @@ class Form extends React.Component {
 
           <br></br>
 
+          <fieldset>
+          <h5>Activity Level</h5>
 
           <label htmlFor="none">None</label>
-          <input id="none" name="activity" type="radio" defaultValue={1.2}/>
+          <input id="none" name="activity" type="radio" value={1.2}/>
+          <label htmlFor="light">Light</label>
+          <input id="light" name="activity" type="radio" value={1.375}/>
           <label htmlFor="normal">Normal</label>
-          <input id="normal" name="activity" type="radio" defaultValue={1.55}/>
+          <input id="normal" name="activity" type="radio" value={1.55}/>
+          <label htmlFor="extra">Extra</label>
+          <input id="extra" name="activity" type="radio" value={1.725}/>
+          <label htmlFor="heavy">Heavy</label>
+          <input id="heavy" name="activity" type="radio" value={1.9}/>
+
+
+          </fieldset>
+         
           <br></br>
 
           <button>Send </button>

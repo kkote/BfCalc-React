@@ -10,7 +10,6 @@ import Chart from "./components/chart";
 import MyForm from "./components/exampleform"; */}
 
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -86,7 +85,7 @@ class App extends React.Component {
           />
           <hr />
           <Table
-            books={this.state.data}
+            statlist={this.state.data}
           />
 
           { /*} 

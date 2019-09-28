@@ -57,9 +57,32 @@ h3 {
 }
 
 
+/* Table */
+
+#tableId {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tableId table, th, td {
+  /* border: 1px solid black; */
+}
+
+#tableId th {
+  height: 25px;
+  text-align: left;
+}
+
+#tableId th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#tableId tr:hover {background-color: #ddd;}
 
 
-
+#tableId tr:nth-child(even){background-color: #f2f2f2;}
 
 
 

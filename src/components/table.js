@@ -8,19 +8,19 @@ class Table extends React.Component {
         super(props);
         this.state = {
             selectedProduct: {},
-            books: this.props.books,
+            statlist: this.props.statlist,
             error: "error"
         };
     }
 
 
     render() {
-        const BookList = ({ lists }) => (
+        const StatList = ({ lists }) => (
 
-            Object.keys(this.props.books).map(key => (
+            Object.keys(this.props.statlist).map(key => (
                 <Each
                     key={key}
-                    item={this.props.books[key]}
+                    item={this.props.statlist[key]}
                 />
             ))
         );
@@ -32,11 +32,12 @@ class Table extends React.Component {
                     <td>{item.weight}</td>
                     <td>{item.bmi}</td>
                     <td>{item.bf}</td>
+                    <td>{item.tdee}</td>
                 </tr >
         );
 
         return (
-            <div>
+            <div >
                 <header>
                     <h4>Your Progress</h4>
                 </header>
@@ -46,12 +47,14 @@ class Table extends React.Component {
                         <tr>
                             <th>Date</th>
                             <th>Weight</th>
-                            <th>BF %</th>
-                            <th>BMI</th>
+                            <th>Body Mass Index</th>
+                            <th>Body Fat %</th>
+                            <th>TDEE</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
-                        <BookList />
+                        <StatList />
                     </tbody>
                 </table>
             </div>

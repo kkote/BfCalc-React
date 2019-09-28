@@ -12,11 +12,9 @@ class Stats extends React.Component {
       };
       }
   
-  
     render() {
       const {tdee, bf, bmi } = this.props;
 
-      
       
       return (
         <div className="statGroup">
@@ -24,12 +22,12 @@ class Stats extends React.Component {
           <h4>Your Stats</h4>
         </header>
         <div className="statItem">
-          <h5>Body Fat Percentage</h5>
-          {bf}
-        </div>
-        <div className="statItem">
           <h5>Body Mass Index</h5>
           {bmi}
+        </div>
+        <div className="statItem">
+          <h5>Body Fat Percentage</h5>
+          {bf}
         </div>
         <div className="statItem">
           <h5>Total Daily Energy Expenditure</h5>
