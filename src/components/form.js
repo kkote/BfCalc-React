@@ -1,4 +1,5 @@
 import React from "react";
+import Stats from "./statDisplay";
 
 class Form extends React.Component {
   constructor() {
@@ -14,17 +15,21 @@ class Form extends React.Component {
     const stringdata = stringifyFormData(data);
     console.log(stringdata);
     const dataP = JSON.parse(stringdata);
-    const heightInche = ((dataP.feet * 12)+(dataP.inches * 1));
-    
-    const bmi = ((dataP.weight / 3969) * 703).toPrecision(3);
-    console.log(bmi)
+    const heightInch = ((dataP.feet * 12)+(dataP.inches * 1));
+
+    const bmiDisplay = ((dataP.weight / 3969) * 703).toPrecision(3);
+    const bfDisplay = findBf(dataP.gender, dataP.waist, dataP.neck, heightInch, dataP.hips);
+    console.log(bfDisplay);
+    const tdeeDisplay = findTdee(dataP.gender, dataP.activity, dataP.weight, heightInch, dataP.age)
+
+   
     
     this.setState({
       res: stringdata,
       data: dataP,
-      one: dataP.age*dataP.weight,
-      bmi: bmi,
-      heightInches: heightInche
+      bmiDisplay:bmiDisplay,
+      bfDisplay:bfDisplay,
+      tdeeDisplay: tdeeDisplay
     });
     
     // fetch('/api/form-submit-url', {
@@ -32,6 +37,9 @@ class Form extends React.Component {
     //   body: data,
     // });
   }
+
+
+
 
   render() {
     return (
@@ -157,17 +165,22 @@ class Form extends React.Component {
             <pre>FormData {this.state.res}</pre>
             </div>
         )}
-          {this.state.heightInches && (
-            <div className="res-block">
-            <h3>heightInches:</h3>
-            <pre>{this.state.heightInches}</pre>
-            </div>
-        )}
+        <div>
+        <Stats
+           
+            bmi={this.state.bmiDisplay}
+            bf={this.state.bfDisplay}
+            tdee={this.state.tdeeDisplay}
+          />
+        </div>
+         
+ 
        
         </div>
     );
   }
 }
+
 
 
 
@@ -179,5 +192,31 @@ function stringifyFormData(fd) {
   }
   return JSON.stringify(data, null, 2);
 }
+
+
+
+function findBf(gender, waist, neck, height, hips) {
+  const Log10 = X => (Math.log(X) / Math.log(10));
+
+  if (gender === "male") {
+    var percentFat = ((86.010 * (Log10((waist *1) - (neck*1)))) - (70.041 * (Log10(height *1))) + 36.76).toPrecision(3);
+    return percentFat
+  } else {
+    var percentFat = (163.205 * Log10((((waist*1) + (hips*1)) - (neck*1))) - 97.684 * Log10(height*1) - 78.387).toPrecision(3);
+    return percentFat
+  };
+};
+
+
+function findTdee(gender, activity, weight, height, age) {
+  if (gender == "male") {
+    var bmr = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
+    return (bmr * activity)
+  } else {
+    var bmr = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age);
+    return (bmr * activity).toPrecision(4)
+  };
+};
+
 
 export default Form;

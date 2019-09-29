@@ -37,7 +37,7 @@ class Table extends React.Component {
         );
 
         return (
-            <div className="calcForm">
+            <div >
                 <header>
                     <h4>Your Progress</h4>
                 </header>
@@ -57,6 +57,7 @@ class Table extends React.Component {
                         <StatList />
                     </tbody>
                 </table>
+                
             </div>
 
         );

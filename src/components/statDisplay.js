@@ -11,9 +11,14 @@ class Stats extends React.Component {
         error: "error"
       };
       }
+
+
+
+    
   
     render() {
-      const {tdee, bf, bmi } = this.props;
+      const {tdee, bf, bmi} = this.props;
+      
 
       
       return (
@@ -32,6 +37,10 @@ class Stats extends React.Component {
         <div className="statItem">
           <h5>Total Daily Energy Expenditure</h5>
           {tdee}
+        </div>
+        <div className="statItem">
+          <h5>DataTest</h5>
+         
         </div>
       </div>
         
