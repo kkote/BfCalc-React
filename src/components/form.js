@@ -39,144 +39,113 @@ class Form extends React.Component {
         <br></br>
         <form onSubmit={this.handleSubmit}>
 
-        <div className="inputRow">
-          <fieldset>
-            <legend>Date</legend>
-            <input id="date" name="date" type="date" defaultValue={12-12-17} required/>
+          <div className="inputRow">
 
-          </fieldset>
-            
-            
-        </div>
-
-
-        <div className="inputRow">
-          <fieldset >
-          <legend>Gender</legend>
-           
-          <label htmlFor="female">
-            <input id="female" name="gender" type="radio" value={'female'} />
-              Female</label>
-        
-            <label htmlFor="male">
-            <input id="male" name="gender" type="radio" value={'male'} required/>
-              Male</label>
-       
-          </fieldset>
-          </div>
-
-
-          <div className="inputRow basicsRow basicsRowCombo">
-          <fieldset >
-          <legend>Basics</legend>
-
-
-        <div>
-        <label htmlFor="age">Age 
-          <input id="age" name="age" type="number" defaultValue={28} required/>
-          </label>
-
-          <label htmlFor="weight">Weight 
-          <input id="weight" name="weight" type="number" defaultValue={115} required/>
-          </label>
-
-        </div>
-
-        <div>
-
-        <label htmlFor="age">Height
-          </label>
-
-          
-
-          <label htmlFor="feet">
-              <input id="feet" name="feet" type="number" defaultValue={5} placeholder='Feet' required/>
-              Feet
-              </label>
-              
-              <label htmlFor="inches">
-              <input id="inches" name="inches" type="number" defaultValue={3} placeholder='Inches' required/>
-              Inches
-              </label>
-
-        </div>
-          
-         
-          </fieldset>
-
-          </div>
-
-     
-        <div className="inputRow basicsRow">
-    
-          <fieldset>
-            <legend>Height</legend>
-
-              <label htmlFor="feet">Feet
-              <input id="feet" name="feet" type="number" defaultValue={5} placeholder='Feet' required/>
-              </label>
-              
-              <label htmlFor="inches">Inches
-              <input id="inches" name="inches" type="number" defaultValue={3} placeholder='Inches' required/>
-              </label>
-    
-          </fieldset>
-        </div>
-        
-
-          <div className="inputRow basicsRow"> 
-
-          <fieldset>
-            <legend>Measurements (Inches)</legend>
-
-            <label htmlFor="hips">Hips  
-            <input id="hips" name="hips" type="number" defaultValue={34} required/>
+            <label htmlFor="date"> Date
+           <input id="date" name="date" type="date" defaultValue={'2019-09-11'} required />
             </label>
-            
-            <label htmlFor="waist">Waist 
-            <input id="waist" name="waist" type="number" defaultValue={25} required/>
-            </label>
-      
-            <label htmlFor="neck">Neck 
-            <input id="neck" name="neck" type="number" defaultValue={12} required/>
-            </label>
-              
-          </fieldset>
-
           </div>
 
 
           <div className="inputRow">
-            
-          <fieldset >
-          <legend>Activity Level</legend>
-       
-            <label htmlFor="none">
-            <input id="none" name="activity" type="radio" value={1.2} required/> 
-              None</label>
-     
-            <label htmlFor="light">
-            <input id="light" name="activity" type="radio" value={1.375} required/>
-              Light</label>
-           
-           <label htmlFor="normal">
-           <input id="normal" name="activity" type="radio" value={1.55} required/>
-             Normal</label>
-           
-           <label htmlFor="extra">
-           <input id="extra" name="activity" type="radio" value={1.725} required/>
-             Extra</label>
-            
-            <label htmlFor="heavy">
-            <input id="heavy" name="activity" type="radio" value={1.9} required/>
-              Heavy</label>
-       
-          </fieldset>  
-        </div>    
- 
+            <fieldset >
+              <legend>Gender</legend>
+
+              <label htmlFor="female">
+                <input id="female" name="gender" type="radio" value={'female'} />
+                Female</label>
+
+              <label htmlFor="male">
+                <input id="male" name="gender" type="radio" value={'male'} required />
+                Male</label>
+
+            </fieldset>
+          </div>
+
+
+          <div className="inputRow basicsRow basicsRowCombo">
+
+            <label htmlFor="age">Age
+             <input id="age" name="age" type="number" defaultValue={28} required />
+            </label>
+          </div>
+
+          <div className="inputRow basicsRow basicsRowCombo">
+
+            <label htmlFor="weight">Weight
+             <input id="weight" name="weight" type="number" defaultValue={115} required />
+            </label>
+
+          </div>
+
+          <label className="inputRow basicsRow heightLabel"> Height
+           </label>
+          <div className="inputRow basicsRow heightRowMainDiv">
+
+            <div className=" basicsRow heightRow">
+              <label htmlFor="feet">
+                <input id="feet" name="feet" type="number" defaultValue={5} placeholder='Feet' required />
+                <span className="heightSpan">Feet</span>
+              </label>
+
+              <label htmlFor="inches">
+                <input id="inches" name="inches" type="number" defaultValue={3} placeholder='Inches' required />
+                <span className="heightSpan">Inches</span>
+              </label>
+            </div>
+          </div>
+
+
+          <div className="inputRow basicsRow">
+
+            <fieldset>
+              <legend>Measurements (Inches)</legend>
+
+              <label htmlFor="hips">Hips
+               <input id="hips" name="hips" type="number" defaultValue={34} required />
+              </label>
+
+              <label htmlFor="waist">Waist
+               <input id="waist" name="waist" type="number" defaultValue={25} required />
+              </label>
+
+              <label htmlFor="neck">Neck
+               <input id="neck" name="neck" type="number" defaultValue={12} required />
+              </label>
+
+            </fieldset>
+          </div>
+
+          <div className="inputRow">
+
+            <fieldset >
+              <legend>Activity Level</legend>
+
+              <label htmlFor="none">
+                <input id="none" name="activity" type="radio" value={1.2} required />
+                None</label>
+
+              <label htmlFor="light">
+                <input id="light" name="activity" type="radio" value={1.375} required />
+                Light</label>
+
+              <label htmlFor="normal">
+                <input id="normal" name="activity" type="radio" value={1.55} required />
+                Normal</label>
+
+              <label htmlFor="extra">
+                <input id="extra" name="activity" type="radio" value={1.725} required />
+                Extra</label>
+
+              <label htmlFor="heavy">
+                <input id="heavy" name="activity" type="radio" value={1.9} required />
+                Heavy</label>
+            </fieldset>
+          </div>
+
           <button>Calculate </button>
         </form>
-        
+
 
         {this.state.res && (
             <div className="res-block">
