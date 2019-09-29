@@ -90,38 +90,81 @@ h3 {
 /* Form */
 
 .calcForm{ 
-  width: 60%;
+  /* width: 60%; */
 }
-
-/* .calcForm fieldset{
-  max-width: ;
-} */
-
 
 #calcForm {
   font-size: 18px !important;
 }
-.inputRow {
-  width: 100%;
-  display: flex;
-}
 
-.height-group {
-  display: flex;
-  /* width: 50%; */
+.calcForm form {
+  width: 50%;
+  margin: 0 auto;
+  position: relative;
+
 }
-.label-group {
-  /* display: flex; */
-  /* width: 50%; */
+.inputRow {
+  /* width: 100%; */
+  width: auto;
+  display: flex;
 }
 
 fieldset {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+    /* display: grid;
+    grid-auto-columns: auto;
+    grid-auto-flow: column;
+    grid-template-columns: min-content; */
+    /* grid-column: unset;  */
 }
-/* .height-group div {
-  width: 50%;
-} */
+
+fieldset input {
+  width: auto;
+  /* width: 100% */
+}
+
+
+
+input, textarea, select, button {
+  width: 100%;
+  margin: 0;
+
+  -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+          box-sizing: border-box;
+}
+
+.calcForm button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.basicsRow fieldset {
+  display: flex;
+}
+.basicsRow input{
+  width: 100%;
+}
+
+
+.basicsRowCombo fieldset{
+  flex-wrap: wrap
+
+}
+
+.basicsRowCombo div{
+  display: flex
+
+}
+
+
 
 /* body {
   font-size: 16px !important;
