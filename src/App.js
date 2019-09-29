@@ -78,11 +78,11 @@ class App extends React.Component {
           <Form />
           <hr />
           <br></br>
-          <Stats
+         {/*} <Stats
             bmi={data[0].bmi}
             bf={stat[0].bf}
             tdee={stat[0].tdee}
-          />
+          /> /*}
           <hr />
           <Table
             statlist={this.state.data}

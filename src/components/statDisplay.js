@@ -23,9 +23,11 @@ class Stats extends React.Component {
       
       return (
         <div className="statGroup">
+           <hr></hr>
         <header>
           <h4>Your Stats</h4>
         </header>
+        <hr></hr>
         <div className="statItem">
           <h5>Body Mass Index</h5>
           {bmi}
@@ -37,10 +39,6 @@ class Stats extends React.Component {
         <div className="statItem">
           <h5>Total Daily Energy Expenditure</h5>
           {tdee}
-        </div>
-        <div className="statItem">
-          <h5>DataTest</h5>
-         
         </div>
       </div>
         

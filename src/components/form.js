@@ -43,6 +43,7 @@ class Form extends React.Component {
 
   render() {
     return (
+      <div className="calcAndStat">
         <div className="calcForm">
           <header>
             <h4>Your Measurements</h4>
@@ -159,23 +160,35 @@ class Form extends React.Component {
         </form>
 
 
-        {this.state.res && (
-            <div className="res-block">
-            <h3>Data to be sent:</h3>
-            <pre>FormData {this.state.res}</pre>
-            </div>
-        )}
-        <div>
+       
+       
+         
+ 
+       
+        </div>
+
+
+        
+        <hr></hr>
         <Stats
            
             bmi={this.state.bmiDisplay}
             bf={this.state.bfDisplay}
             tdee={this.state.tdeeDisplay}
           />
-        </div>
          
- 
        
+       <br></br>
+       
+        {/*{this.state.res && (
+            <div className="res-block">
+            <h3>Data to be sent:</h3>
+            <pre>FormData {this.state.res}</pre>
+            </div>
+        )}  */}
+
+
+
         </div>
     );
   }
