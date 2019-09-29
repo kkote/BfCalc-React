@@ -87,12 +87,41 @@ h3 {
 
 
 
+/* Form */
 
+.calcForm{ 
+  width: 60%;
+}
+
+/* .calcForm fieldset{
+  max-width: ;
+} */
 
 
 #calcForm {
   font-size: 18px !important;
 }
+.inputRow {
+  width: 100%;
+  display: flex;
+}
+
+.height-group {
+  display: flex;
+  /* width: 50%; */
+}
+.label-group {
+  /* display: flex; */
+  /* width: 50%; */
+}
+
+fieldset {
+  display: flex;
+  justify-content: space-around;
+}
+/* .height-group div {
+  width: 50%;
+} */
 
 /* body {
   font-size: 16px !important;

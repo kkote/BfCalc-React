@@ -37,7 +37,7 @@ class Table extends React.Component {
         );
 
         return (
-            <div >
+            <div className="calcForm">
                 <header>
                     <h4>Your Progress</h4>
                 </header>
