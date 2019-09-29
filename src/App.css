@@ -104,6 +104,13 @@ h3 {
   display: flex;
   padding: 10px;
 }
+/* .inputRow label{
+  color: black
+}
+
+.inputRow input{
+  color: #484848;
+} */
 
 fieldset {
   padding: 10px;
