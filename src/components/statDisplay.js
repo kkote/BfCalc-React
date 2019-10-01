@@ -1,4 +1,6 @@
 import React from "react";
+import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 
 
@@ -22,13 +24,13 @@ class Stats extends React.Component {
 
       
       return (
-        <div className="statGroup">
+        <Col className="statGroup">
            <hr></hr>
         <header>
           <h4>Your Stats</h4>
         </header>
         <hr></hr>
-        <div className="statItem">
+        {/*<div className="statItem">
           <h5>Body Mass Index</h5>
           {bmi}
         </div>
@@ -39,8 +41,24 @@ class Stats extends React.Component {
         <div className="statItem">
           <h5>Total Daily Energy Expenditure</h5>
           {tdee}
-        </div>
-      </div>
+        </div>  */}
+
+        <Card body >
+        <CardTitle>Body Mass Index</CardTitle>
+        <CardText>{bmi}</CardText>
+      </Card>
+
+      <Card body >
+        <CardTitle>Body Fat Percentage</CardTitle>
+        <CardText>{bf}</CardText>
+      </Card>
+
+      <Card body >
+        <CardTitle>Total Daily Energy Expenditure</CardTitle>
+        <CardText>{tdee}</CardText>          
+      </Card>
+
+      </Col>
         
       );
     }

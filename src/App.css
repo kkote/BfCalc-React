@@ -89,20 +89,26 @@ h3 {
 
 /* Form */
 
-#calcForm {
-  font-size: 18px !important;
+.calcForm {
+  /* font-size: 18px !important; */
+  padding: 10px;
+  border: #989ba2 solid 1px;
+
 }
 
 .calcForm form {
   /* width: 50%; */
   margin: 0 auto;
   position: relative;
+
 }
 
 .inputRow {
   width: auto;
   display: flex;
-  padding: 10px;
+  /* padding: 10px; */
+  /* display: flex;
+justify-content: space-around; */
 }
 /* .inputRow label{
   color: black
@@ -377,6 +383,7 @@ label {
   margin-bottom: 0 !important;
 
   height: max-content;
+  flex-direction: column;
 }
 
 @media only screen and (min-width: 601px) {

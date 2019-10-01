@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/header";
-import Form from "./components/form";
+import CalcForm from "./components/form";
 import Stats from "./components/statDisplay";
 import Table from "./components/table";
 {/*import Footer from "./components/footer";
@@ -75,7 +75,7 @@ class App extends React.Component {
         <br></br>
         <div className='main'>
           <hr />
-          <Form />
+          <CalcForm />
           <hr />
           <br></br>
          {/*} <Stats

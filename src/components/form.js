@@ -1,7 +1,9 @@
 import React from "react";
 import Stats from "./statDisplay";
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
-class Form extends React.Component {
+class CalcForm extends React.Component {
   constructor() {
     super();
     this.state = {};
@@ -20,7 +22,7 @@ class Form extends React.Component {
     const bmiDisplay = ((dataP.weight / 3969) * 703).toPrecision(3);
     const bfDisplay = findBf(dataP.gender, dataP.waist, dataP.neck, heightInch, dataP.hips);
     console.log(bfDisplay);
-    const tdeeDisplay = findTdee(dataP.gender, dataP.activity, dataP.weight, heightInch, dataP.age)
+    const tdeeDisplay = findTdee(dataP.gender, dataP.activity, dataP.weight, heightInch, dataP.age);
 
    
     
@@ -43,22 +45,29 @@ class Form extends React.Component {
 
   render() {
     return (
-      <div className="calcAndStat">
-        <div className="calcForm">
+      <Container className="calcAndStat">
+        <Col className="calcForm">
           <header>
             <h4>Your Measurements</h4>
         </header>
         <hr></hr>
-        <br></br>
-        <form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
 
-          <div className="inputRow">
+        <FormGroup className="inputRow">
 
+          <Label htmlFor="date"> Date
+          <Input  id="date" name="date" type="date" defaultValue={'2019-09-11'} required />
+          </Label>
+          </FormGroup>
+
+
+      {/*}    <div className="inputRow">
             <label htmlFor="date"> Date
            <input id="date" name="date" type="date" defaultValue={'2019-09-11'} required />
             </label>
-          </div>
+          </div>  
 
+      
 
           <div className="inputRow">
             <fieldset >
@@ -73,15 +82,42 @@ class Form extends React.Component {
                 Male</label>
 
             </fieldset>
-          </div>
+          </div>*/}
 
 
-          <div className="inputRow basicsRow basicsRowCombo">
+          <FormGroup tag="fieldset" row>
+          <legend className="col-form-label col-sm-2">Gender</legend>
+         
+            <FormGroup check>
+              <Label check>
+                <Input  id="female" name="gender" type="radio" value={'female'} />{' '}
+                Female
+              </Label>
+            </FormGroup>
+            <FormGroup check>
+              <Label check>
+                <Input id="male" name="gender" type="radio" value={'male'} required  />{' '}
+                Male
+              </Label>
+            </FormGroup>
+         
+        </FormGroup>
+
+
+          <FormGroup className="inputRow basicsRow basicsRowCombo">
+
+        <Label htmlFor="age"> Age
+        <Input  id="age" name="age" type="number" defaultValue={28} min="18" max="99" required  />
+        </Label>
+        </FormGroup>
+
+        {/*}  <div className="inputRow basicsRow basicsRowCombo">
 
             <label htmlFor="age">Age
              <input id="age" name="age" type="number" defaultValue={28} min="18" max="99" required />
             </label>
           </div>
+
 
           <div className="inputRow basicsRow basicsRowCombo">
 
@@ -90,8 +126,16 @@ class Form extends React.Component {
             </label>
 
           </div>
+          */}
 
-          <label className="inputRow basicsRow heightLabel"> Height
+          <FormGroup className="inputRow">
+
+        <Label htmlFor="weight"> Weight
+        <Input  name="weight" type="number" defaultValue={115} min="85" max="600" required  />
+        </Label>
+        </FormGroup>
+
+        {/* <label className="inputRow basicsRow heightLabel"> Height
            </label>
           <div className="inputRow basicsRow heightRowMainDiv">
 
@@ -106,10 +150,70 @@ class Form extends React.Component {
                 <span className="heightSpan">Inches</span>
               </label>
             </div>
-          </div>
+          </div> */}
+          
 
 
-          <div className="inputRow basicsRow">
+
+
+
+          <Row form>
+          <Label htmlFor="Height"> 
+          Height
+        </Label>
+
+         
+
+          <Col >
+
+        <Label htmlFor="feet">
+        <Input  id="feet" name="feet" type="number" defaultValue={5} placeholder='Feet' min="4" max="7" required />
+        <span className="heightSpan">Feet</span>
+        </Label>
+        </Col>
+
+        <Col >
+
+        <Label htmlFor="inches"> 
+        <Input  id="inches" name="inches" type="number" defaultValue={3} placeholder='Inches'  min="0" max="11" required />
+        <span className="heightSpan">Inches</span>
+        </Label>
+        </Col>
+        
+        </Row>
+
+
+
+
+          <FormGroup tag="fieldset" >
+          <legend className="col-form-label col-sm-2">Measurements(Inches)</legend>
+
+          <FormGroup className="inputRow">
+
+        <Label htmlFor="hips"> Hips
+        <Input  id="hips" name="hips" type="number" defaultValue={34} min="25" max="60" required />
+        </Label>
+        </FormGroup>
+
+        <FormGroup className="inputRow">
+
+        <Label htmlFor="waist"> Waist
+        <Input  id="waist" name="waist" type="number" defaultValue={25} min="18" max="50" required />
+        </Label>
+        </FormGroup>
+
+        <FormGroup className="inputRow">
+
+        <Label htmlFor="neck"> Neck
+        <Input  id="neck" name="neck" type="number" defaultValue={12} min="10" max="26" required  />
+        </Label>
+        </FormGroup>
+        
+        </FormGroup>
+
+
+
+         {/*} <div className="inputRow basicsRow">
 
             <fieldset>
               <legend>Measurements (Inches)</legend>
@@ -128,6 +232,8 @@ class Form extends React.Component {
 
             </fieldset>
           </div>
+
+          */}
 
           <div className="inputRow">
 
@@ -157,15 +263,11 @@ class Form extends React.Component {
           </div>
 
           <button>Calculate </button>
-        </form>
+        </Form>
 
 
        
-       
-         
- 
-       
-        </div>
+        </Col>
 
 
         
@@ -189,7 +291,7 @@ class Form extends React.Component {
 
 
 
-        </div>
+        </Container>
     );
   }
 }
@@ -224,7 +326,7 @@ function findBf(gender, waist, neck, height, hips) {
 function findTdee(gender, activity, weight, height, age) {
   if (gender == "male") {
     var bmr = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
-    return (bmr * activity)
+    return (bmr * activity).toPrecision(4)
   } else {
     var bmr = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age);
     return (bmr * activity).toPrecision(4)
@@ -232,4 +334,4 @@ function findTdee(gender, activity, weight, height, age) {
 };
 
 
-export default Form;
+export default CalcForm;
