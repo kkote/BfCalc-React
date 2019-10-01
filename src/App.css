@@ -129,6 +129,10 @@ fieldset input {
   width: auto;
 }
 
+fieldset label {
+  margin-left: 5px;
+}
+
 
 input, textarea, select, button {
   width: 100%;
@@ -148,7 +152,7 @@ input, textarea, select, button {
   cursor: pointer;
 }
 
-.basicsRow fieldset {
+/* .basicsRow fieldset {
   display: flex;
 }
 .basicsRow input{
@@ -165,14 +169,14 @@ input, textarea, select, button {
 
 .basicsRowCombo div{
   display: flex
-}
+} */
 
-.heightLabel {
+/* .heightLabel {
   padding-bottom: 0px;
-}
-.heightRowMainDiv {
+} */
+/* .heightRowMainDiv {
   padding-top: 0px;
-}
+} */
 
 .heightRow {
   padding-top: 0px;
@@ -180,8 +184,12 @@ input, textarea, select, button {
   display: flex;
 }
 
+.heightRow label {
+  display: flex;
+}
+
 .heightRow input {
-  width: 70%;
+  /* width: 70%; */
 }
 
 .heightSpan {
@@ -189,6 +197,10 @@ input, textarea, select, button {
   padding: 5px;
 }
 
+
+.fieldBold {
+  font-weight: bold;
+}
 
 /* End Form CSS */
 
