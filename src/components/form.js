@@ -1,7 +1,8 @@
 import React from "react";
 import Stats from "./statDisplay";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
+import { InputGroup, InputGroupText, InputGroupAddon} from 'reactstrap';
 
 class CalcForm extends React.Component {
   constructor() {
@@ -13,18 +14,15 @@ class CalcForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.target);
-    console.log(data);
     const stringdata = stringifyFormData(data);
-    console.log(stringdata);
     const dataP = JSON.parse(stringdata);
+
     const heightInch = ((dataP.feet * 12)+(dataP.inches * 1));
 
     const bmiDisplay = ((dataP.weight / 3969) * 703).toPrecision(3);
     const bfDisplay = findBf(dataP.gender, dataP.waist, dataP.neck, heightInch, dataP.hips);
-    console.log(bfDisplay);
     const tdeeDisplay = findTdee(dataP.gender, dataP.activity, dataP.weight, heightInch, dataP.age);
 
-   
     
     this.setState({
       res: stringdata,
@@ -44,6 +42,8 @@ class CalcForm extends React.Component {
 
 
   render() {
+
+
     return (
       <Container className="calcAndStat">
         <Col className="calcForm">
@@ -66,7 +66,7 @@ class CalcForm extends React.Component {
                       Female
                     </Label>
                   </FormGroup>
-                  
+
                   <FormGroup check>
                     <Label check>
                       <Input id="male" name="gender" type="radio" value={'male'} required />{' '}
@@ -86,13 +86,15 @@ class CalcForm extends React.Component {
 
             <Row form>
 
-              <Col>
+           <Col>
                 <FormGroup className="inputRow basicsRow ">
                   <Label htmlFor="age"> Age
                     <Input id="age" name="age" type="number" defaultValue={28} min="18" max="99" required />
                   </Label>
                 </FormGroup>
-              </Col>
+              </Col>  
+
+  
 
               <Col>
                 <Label htmlFor="weight"> Weight
@@ -109,10 +111,14 @@ class CalcForm extends React.Component {
               <Row form>
 
                 <Col className="heightRow">
-                  <Label htmlFor="feet">
+                  <InputGroup>
+                  
                     <Input id="feet" name="feet" type="number" defaultValue={5} placeholder='Feet' min="4" max="7" required />
+                    <InputGroupAddon addonType="append">Feet</InputGroupAddon>
+                   
+                    </InputGroup>
                     {/*<span className="heightSpan">Feet</span> */}
-                  </Label>
+                 
                 </Col>
 
                 <Col className="heightRow">
@@ -200,22 +206,37 @@ class CalcForm extends React.Component {
 
 
         <hr></hr>
-        <Stats
+      <Stats
 
           bmi={this.state.bmiDisplay}
           bf={this.state.bfDisplay}
           tdee={this.state.tdeeDisplay}
-        />
+          res={this.state.res}
+        
+        />  
+
+         {/* stats={this.state.res} */}
 
 
         <br></br>
 
-        {/*{this.state.res && (
+        {/* {this.state.res && (
             <div className="res-block">
             <h3>Data to be sent:</h3>
             <pre>FormData {this.state.res}</pre>
             </div>
         )}  */}
+
+
+{/*<Col> <div className="res-block">
+            <h3>Data :</h3>
+            
+            {data.map(r => <div>{r.age}</div>)}
+            
+            </div></Col>  */}
+           
+            
+        
 
 
 
@@ -242,22 +263,22 @@ function findBf(gender, waist, neck, height, hips) {
   const Log10 = X => (Math.log(X) / Math.log(10));
 
   if (gender === "male") {
-    var percentFat = ((86.010 * (Log10((waist *1) - (neck*1)))) - (70.041 * (Log10(height *1))) + 36.76).toPrecision(3);
-    return percentFat
+    var percentFatM = ((86.010 * (Log10((waist *1) - (neck*1)))) - (70.041 * (Log10(height *1))) + 36.76).toPrecision(3);
+    return percentFatM
   } else {
-    var percentFat = (163.205 * Log10((((waist*1) + (hips*1)) - (neck*1))) - 97.684 * Log10(height*1) - 78.387).toPrecision(3);
-    return percentFat
+    var percentFatF = (163.205 * Log10((((waist*1) + (hips*1)) - (neck*1))) - 97.684 * Log10(height*1) - 78.387).toPrecision(3);
+    return percentFatF
   };
 };
 
 
 function findTdee(gender, activity, weight, height, age) {
   if (gender == "male") {
-    var bmr = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
-    return (bmr * activity).toPrecision(4)
+    var bmrM = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
+    return (bmrM * activity).toPrecision(4)
   } else {
-    var bmr = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age);
-    return (bmr * activity).toPrecision(4)
+    var bmrF = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age);
+    return (bmrF * activity).toPrecision(4)
   };
 };
 

@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import Header from "./components/header";
 import CalcForm from "./components/form";
-import Stats from "./components/statDisplay";
-import Table from "./components/table";
+
 {/*import Footer from "./components/footer";
+import Table from "./components/table";
 import Login from "./components/login";
 import Chart from "./components/chart";
 import MyForm from "./components/exampleform"; */}
@@ -66,7 +66,7 @@ class App extends React.Component {
 
   render() {
 
-    const { stat, data } = this.state;
+
 
     return (
       <div className="App">
