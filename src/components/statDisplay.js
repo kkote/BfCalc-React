@@ -8,9 +8,9 @@ class Stats extends React.Component {
       super(props);
       this.state = {
         res: "",
-        tdeeS:"",
-        bmiS:"",
-        bfS:"",
+        tdee:"",
+        bmi:"",
+        bf:"",
         error: "error"
       };
       this.setDisplay = this.setDisplay.bind(this);
@@ -53,13 +53,12 @@ class Stats extends React.Component {
 
     this.setState(
       {
-        bfS: bmiDisplay,
-        bmiS: bfDisplay,
-        tdeeS: tdeeDisplay
+        bf: bmiDisplay,
+        bmi: bfDisplay,
+        tdee: tdeeDisplay
       }
     );
   }
-
 
     componentDidUpdate(prevProps, prevState) {
     if (this.props.res !== prevProps.res) {
@@ -68,10 +67,8 @@ class Stats extends React.Component {
   }
   
     render() {
-      const {tdee, bf, bmi} = this.props;
-     const {bmiS, bfS, tdeeS} = this.state; 
-      
 
+     const {bmi, bf, tdee} = this.state; 
       
       return (
         <Col className="statGroup">
@@ -96,16 +93,6 @@ class Stats extends React.Component {
         <CardTitle>Total Daily Energy Expenditure</CardTitle>
         <CardText>{tdee}</CardText>          
       </Card>
-
-
-
-    <Card body >
-        <CardTitle>Test</CardTitle>
-        <CardText>{bmiS}</CardText>   
-        <CardText>{bfS}</CardText>   
-        <CardText>{tdeeS}</CardText>          
-      </Card>  
-
 
 
         </div>
