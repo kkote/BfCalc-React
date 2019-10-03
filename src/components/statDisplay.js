@@ -87,62 +87,18 @@ class Stats extends React.Component {
   }
   
     render() {
+      const {bmi, bf, tdee, bmiR, bfR, tdeeA} = this.state; 
 
-     const {bmi, bf, tdee, bmiR, bfR, tdeeA} = this.state; 
-
-    const StatCard = (props) =>  (
-      <Card body >
-        <CardTitle>{props.title}</CardTitle>
-        <CardText>{props.stat}</CardText>
-        <CardText>{props.about}</CardText>
-      </Card>
+      const StatCard = (props) =>  (
+        <Card body >
+          <CardTitle>{props.title}</CardTitle>
+          <CardText>{props.stat}</CardText>
+          <CardText>{props.about}</CardText>
+        </Card>
       );
       
       return (
-       
     <Col className="statGroup">
-
-    <header>
-      <h4>Your Stats</h4>
-    </header>
-    <hr></hr>
-    <div>
-      <StatCard title="Body Mass Index"
-        stat={bmi}
-        about={bmiR} />
-      <StatCard title="Body Fat Percentage"
-        stat={bf} 
-        about={bfR}/>
-      <StatCard title="Total Daily Energy Expenditure"
-        stat={tdee} 
-        about={tdeeA}/>
-    </div>
-  </Col>
-      );
-    }
-  }
-  
-  export default Stats;
-
-
-{/*}   function Comment(props) {
-        return (
-         <React.Fragment >
-          <Card body >
-        <CardTitle>{props.title}</CardTitle>
-        <CardText>{props.stat}</CardText>
-        <CardText>{props.about}</CardText>
-      </Card>
-        </React.Fragment>
-
-        );
-      }
-    
-
-  return (
-
-    <Col className="statGroup">
-
       <header>
         <h4>Your Stats</h4>
       </header>
@@ -150,22 +106,17 @@ class Stats extends React.Component {
       <div>
         <StatCard title="Body Mass Index"
           stat={bmi}
-          about=(bmiR) />
+          about={bmiR} />
         <StatCard title="Body Fat Percentage"
           stat={bf} 
-          about="bf range"/>
+          about={bfR}/>
         <StatCard title="Total Daily Energy Expenditure"
           stat={tdee} 
-          about="TDEE about"/>
+          about={tdeeA}/>
       </div>
-    </Col>
-
-
-  );
-}
+  </Col>
+      );
+    }
   }
   
   export default Stats;
-*/}
-
-  

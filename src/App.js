@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import Header from "./components/header";
 import CalcForm from "./components/form";
-
-{/*import Footer from "./components/footer";
 import Table from "./components/table";
+{/*import Footer from "./components/footer";
+
 import Login from "./components/login";
 import Chart from "./components/chart";
 import MyForm from "./components/exampleform"; */}
@@ -24,7 +24,7 @@ class App extends React.Component {
           }
         ],
       error: "",
-      data: [
+      list: [
         {
           'id': 1,
           'date': 'MonthYear',
@@ -47,10 +47,11 @@ class App extends React.Component {
     }
 
     fetch(`https://8qkziweyo4.execute-api.us-west-2.amazonaws.com/dev/api/user/stats`).then(handleErrors).then(res => res.json()).then(result => {
-      console.log(result)
+      // console.log(result);
+      // console.log(result[0]);
 
       var resulttext = result.items;
-      this.setState({data: result, isLoaded: true, error: ""});
+      this.setState({list: result, isLoaded: true, error: ""});
     }, error => {
       this.setState({error: "Please input valid search..."});
     });
@@ -75,22 +76,21 @@ class App extends React.Component {
         <br></br>
         <div className='main'>
           <hr />
-          <CalcForm />
+          <CalcForm
+          prevForm={this.state.list}
+           />
           <hr />
           <br></br>
+          <Table
+            statlist={this.state.list} />
          {/*} <Stats
             bmi={data[0].bmi}
             bf={stat[0].bf}
             tdee={stat[0].tdee}
-          /> /*}
-          <hr />
-          <Table
-            statlist={this.state.data}
-          />
-
-          { /*} 
+          /> 
           <Chart />
     <Footer />  */}
+     
         </div>
       </div>
     );

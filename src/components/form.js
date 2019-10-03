@@ -7,21 +7,48 @@ import { InputGroup, InputGroupText, InputGroupAddon} from 'reactstrap';
 class CalcForm extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      form:""
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
+
+  setFormData() {
+    const lastEntry = this.props.prevForm[0];
+    console.log(lastEntry);
+    const form = "form";
+ 
+    this.setState(
+      {
+        form: lastEntry
+      }
+    );
+  }
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.prevForm !== prevProps.prevForm) {
+      this.setFormData();
+    }
+  }
+
   handleSubmit(event) {
-    event.preventDefault();
+   
+    
     const data = new FormData(event.target);
 
     const dataObj = Object.fromEntries(data);
+    console.log(dataObj);
     const stringdata = JSON.stringify(dataObj, null, 2);
+    console.log(stringdata);
     
     this.setState({
       res: stringdata,
       data: dataObj
     });
+    event.preventDefault();
     
     // fetch('/api/form-submit-url', {
     //   method: 'POST',
@@ -31,6 +58,32 @@ class CalcForm extends React.Component {
 
 
   render() {
+
+    const {gender, date, age, weight, feet, inches, hips, waist, neck, activity} = this.state.form;
+
+    const ActivityGroup = (props) => (
+      <FormGroup check>
+                  <Label htmlFor={props.htmlFor} check>
+                    <Input id={props.id} name="activity" type="radio" value={props.value} required />{' '}
+                    {props.title}</Label>
+      </FormGroup>
+    );
+
+
+    
+    const HeightGroup = (props) => (
+      <Col className="heightRow">
+      <Label htmlFor={props.htmlFor}>
+        <Input id={props.id} name={props.name} type="number" defaultValue={props.default} placeholder='Inches' min={props.min} max={props.max} required />
+       {/*} <span className="heightSpan">Inches</span> */}
+      </Label>
+    </Col>
+    );
+
+
+
+
+   
 
     return (
       <Container className="calcAndStat">
@@ -49,7 +102,7 @@ class CalcForm extends React.Component {
 
                   <FormGroup check>
                     <Label check>
-                      <Input id="female" name="gender" type="radio" value={'female'} />{' '}
+                      <Input id="female" name="gender" type="radio" value={'female'} defaultChecked />{' '}
                       Female
                     </Label>
                   </FormGroup>
@@ -73,10 +126,18 @@ class CalcForm extends React.Component {
 
             <Row form>
 
-           <Col>
+          {/*} <Col>
                 <FormGroup className="inputRow basicsRow ">
                   <Label htmlFor="age"> Age
                     <Input id="age" name="age" type="number" defaultValue="28" min="18" max="99" required />
+                  </Label>
+                </FormGroup>
+              </Col>  */}
+
+              <Col>
+                <FormGroup className="inputRow basicsRow ">
+                  <Label htmlFor="age"> Age 
+                    <Input id="age" name="age" type="number" defaultValue={age}  min="18" max="99" required />
                   </Label>
                 </FormGroup>
               </Col>  
@@ -107,19 +168,24 @@ class CalcForm extends React.Component {
                     {/*<span className="heightSpan">Feet</span> */}
                  
                 </Col>
+                
+                <HeightGroup 
+                htmlFor="inches" id="inches" name="inches"
+                min="0" max="11" default={this.state.form.inches}/>
 
-                <Col className="heightRow">
+               {/*} <Col className="heightRow">
                   <Label htmlFor="inches">
                     <Input id="inches" name="inches" type="number" defaultValue="3" placeholder='Inches' min="0" max="11" required />
-                   {/*} <span className="heightSpan">Inches</span> */}
+                   {/*} <span className="heightSpan">Inches</span> 
                   </Label>
-                </Col>
+                </Col>  */}
 
               </Row>
 
             </FormGroup>
 
           <hr></hr>
+
 
             <FormGroup >
               <Label htmlFor="measurements" className="fieldBold">
@@ -147,20 +213,23 @@ class CalcForm extends React.Component {
               </Row>
             </FormGroup>
 
-
             <Row form>
               <FormGroup tag="fieldset" row>
                 <legend className="col-form-label col-sm-2">Activity Level</legend>
 
-                <FormGroup check>
-                  <Label htmlFor="none" check>
-                    <Input id="none" name="activity" type="radio" value="1.2" required />{' '}
-                    None</Label>
-                </FormGroup>
+                 
+                  <ActivityGroup 
+                    id="none"
+                    htmlFor="none"
+                    title="None"
+                    value= "1.2"
+                    type="radio"
+                    name="activity"
+                    /> 
 
                 <FormGroup check>
                   <Label htmlFor="light" check>
-                    <Input id="light" name="activity" type="radio" value="1.375" required />{' '}
+                    <Input id="light" name="activity" type="radio" value="1.375" defaultChecked required />{' '}
                     Light</Label>
                 </FormGroup>
 
