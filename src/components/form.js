@@ -14,12 +14,13 @@ class CalcForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.target);
-    const stringdata = stringifyFormData(data);
-    const dataP = JSON.parse(stringdata);
 
+    const dataObj = Object.fromEntries(data);
+    const stringdata = JSON.stringify(dataObj, null, 2);
+    
     this.setState({
       res: stringdata,
-      data: dataP
+      data: dataObj
     });
     
     // fetch('/api/form-submit-url', {
@@ -75,7 +76,7 @@ class CalcForm extends React.Component {
            <Col>
                 <FormGroup className="inputRow basicsRow ">
                   <Label htmlFor="age"> Age
-                    <Input id="age" name="age" type="number" defaultValue={28} min="18" max="99" required />
+                    <Input id="age" name="age" type="number" defaultValue="28" min="18" max="99" required />
                   </Label>
                 </FormGroup>
               </Col>  
@@ -84,7 +85,7 @@ class CalcForm extends React.Component {
 
               <Col>
                 <Label htmlFor="weight"> Weight
-                  <Input name="weight" type="number" defaultValue={115} min="85" max="600" required />
+                <Input name="weight" type="number" defaultValue="115" min="85" max="600" required />
                 </Label>
               </Col>
 
@@ -99,7 +100,7 @@ class CalcForm extends React.Component {
                 <Col className="heightRow">
                   <InputGroup>
                   
-                    <Input id="feet" name="feet" type="number" defaultValue={5} placeholder='Feet' min="4" max="7" required />
+                    <Input id="feet" name="feet" type="number" defaultValue="5" placeholder='Feet' min="4" max="7" required />
                     <InputGroupAddon addonType="append">Feet</InputGroupAddon>
                    
                     </InputGroup>
@@ -109,7 +110,7 @@ class CalcForm extends React.Component {
 
                 <Col className="heightRow">
                   <Label htmlFor="inches">
-                    <Input id="inches" name="inches" type="number" defaultValue={3} placeholder='Inches' min="0" max="11" required />
+                    <Input id="inches" name="inches" type="number" defaultValue="3" placeholder='Inches' min="0" max="11" required />
                    {/*} <span className="heightSpan">Inches</span> */}
                   </Label>
                 </Col>
@@ -128,19 +129,19 @@ class CalcForm extends React.Component {
 
                 <Col >
                   <Label htmlFor="hips"> Hips
-                    <Input id="hips" name="hips" type="number" defaultValue={34} min="25" max="60" required />
+                    <Input id="hips" name="hips" type="number" defaultValue="34" min="25" max="60" required />
                   </Label>
                 </Col>
 
                 <Col >
                   <Label htmlFor="waist"> Waist
-                    <Input id="waist" name="waist" type="number" defaultValue={25} min="18" max="50" required />
+                    <Input id="waist" name="waist" type="number" defaultValue="25" min="18" max="50" required />
                   </Label>
                 </Col>
 
                 <Col >
                   <Label htmlFor="neck"> Neck
-                   <Input id="neck" name="neck" type="number" defaultValue={12} min="10" max="26" required />
+                   <Input id="neck" name="neck" type="number" defaultValue="12" min="10" max="26" required />
                   </Label>
                 </Col>
               </Row>
@@ -153,31 +154,31 @@ class CalcForm extends React.Component {
 
                 <FormGroup check>
                   <Label htmlFor="none" check>
-                    <Input id="none" name="activity" type="radio" value={1.2} required />{' '}
+                    <Input id="none" name="activity" type="radio" value="1.2" required />{' '}
                     None</Label>
                 </FormGroup>
 
                 <FormGroup check>
                   <Label htmlFor="light" check>
-                    <Input id="light" name="activity" type="radio" value={1.375} required />{' '}
+                    <Input id="light" name="activity" type="radio" value="1.375" required />{' '}
                     Light</Label>
                 </FormGroup>
 
                 <FormGroup check>
                   <Label htmlFor="normal" check>
-                    <Input id="normal" name="activity" type="radio" value={1.55} required />{' '}
+                    <Input id="normal" name="activity" type="radio" value="1.55" required />{' '}
                     Normal</Label>
                 </FormGroup>
 
                 <FormGroup check>
                   <Label htmlFor="extra" check>
-                    <Input id="extra" name="activity" type="radio" value={1.725} required />{' '}
+                    <Input id="extra" name="activity" type="radio" value="1.725" required />{' '}
                     Extra</Label>
                 </FormGroup>
 
                 <FormGroup check>
                   <Label htmlFor="heavy" check>
-                    <Input id="heavy" name="activity" type="radio" value={1.9} required />{' '}
+                    <Input id="heavy" name="activity" type="radio" value="1.9" required />{' '}
                     Heavy</Label>
                 </FormGroup>
 
@@ -191,12 +192,9 @@ class CalcForm extends React.Component {
 
 
         <hr></hr>
-      <Stats
-
-          bmi={this.state.bmiDisplay}
-          bf={this.state.bfDisplay}
-          tdee={this.state.tdeeDisplay}
-          res={this.state.res}
+      <Stats  
+      res={this.state.res}
+      data={this.state.data}
         />  
 
         <br></br>
@@ -208,20 +206,9 @@ class CalcForm extends React.Component {
             </div>
         )}  */}
 
-  
       </Container>
     );
   }
-}
-
-
-
-function stringifyFormData(fd) {
-  const data = {};
-    for (let key of fd.keys()) {
-      data[key] = fd.get(key);
-  }
-  return JSON.stringify(data, null, 2);
 }
 
 

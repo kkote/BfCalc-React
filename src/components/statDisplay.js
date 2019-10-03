@@ -1,6 +1,7 @@
 import React from "react";
 import { Card,  CardTitle, CardText } from 'reactstrap';
 import {  Col } from 'reactstrap';
+import { parse } from "url";
 
 
 class Stats extends React.Component {
@@ -8,9 +9,13 @@ class Stats extends React.Component {
       super(props);
       this.state = {
         res: "",
+        data:"",
         tdee:"",
+        tdeeA: "about tdee",
         bmi:"",
+        bmiR: "",
         bf:"",
+        bfR:'range',
         error: "error"
       };
       this.setDisplay = this.setDisplay.bind(this);
@@ -18,89 +23,101 @@ class Stats extends React.Component {
 
 
   setDisplay() {
-    let res = this.props.res;
-    const dataP = JSON.parse(res);
+    const res = this.props.res;
+    const data = this.props.data;
 
+    let {gender, age, feet, inches, waist, weight, neck, hips, activity} = data;
+    waist = parseInt(waist);
+    neck = parseInt(neck);
+    hips = parseInt(hips);
+    inches = parseInt(inches);
+    let height = ((feet * 12) + inches);
+   
 
-    function findBf(gender, waist, neck, height, hips) {
+    function findBf(g, w, n, ht, h) {
       const Log10 = X => (Math.log(X) / Math.log(10));
+      
+      let mCalc = ((86.010 * (Log10(w - n))) - (70.041 * (Log10(ht))) + 36.76);
+      let fCalc = (163.205 * Log10(w + h - n) - 97.684 * Log10(ht) - 78.387);
 
-      if (gender === "male") {
-        var percentFatM = ((86.010 * (Log10((waist * 1) - (neck * 1)))) - (70.041 * (Log10(height * 1))) + 36.76).toPrecision(3);
-        return percentFatM
-      } else {
-        var percentFatF = (163.205 * Log10((((waist * 1) + (hips * 1)) - (neck * 1))) - 97.684 * Log10(height * 1) - 78.387).toPrecision(3);
-        return percentFatF
-      };
+      var bf = (g === 'male') ? mCalc : fCalc;
+      return bf
     };
 
 
-    function findTdee(gender, activity, weight, height, age) {
-      if (gender == "male") {
-        var bmrM = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
-        return (bmrM * activity).toPrecision(4)
-      } else {
-        var bmrF = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age);
-        return (bmrF * activity).toPrecision(4)
-      };
+    function bmiRange(bmi) {
+      return (bmi < 18.5)              ? "Underweight"
+            :(bmi >= 18.5 && bmi < 25) ? "Normal"
+            :(bmi >= 25 && bmi < 30)   ? "Overweight"
+            :                            "Obese";
     };
 
-    const heightInch = ((dataP.feet * 12) + (dataP.inches * 1));
-    const bmiDisplay = ((dataP.weight / 3969) * 703).toPrecision(3);
-    const bfDisplay = findBf(dataP.gender, dataP.waist, dataP.neck, heightInch, dataP.hips);
-    const tdeeDisplay = findTdee(dataP.gender, dataP.activity, dataP.weight, heightInch, dataP.age);
+
+    function findTdee(gender, activity, w, ht, age) {
+      // BMR = Basal Metabolic Rate
+      var mBMR = 66 + (6.23 * w) + (12.7 * ht) - (6.8 * age);
+      var fBMR = 655 + (4.35 * w) + (4.7 * ht) - (4.7 * age);
+
+      var tdee = (gender === "male") ? (mBMR * activity) : (fBMR * activity);
+      return tdee
+    };
+
+
+    // bmi = Body Mass Index;  bf = Body Fat Percentage; tdee = Total Daily Energy Expenditure
+    const bmi = ((weight / (height*height)) * 703).toPrecision(3);
+    const bmiR = bmiRange(bmi);
+    const bf = findBf(gender, waist, neck, height, hips).toPrecision(3);
+    const tdee = findTdee(gender, activity, weight, height, age).toPrecision(4);
 
 
     this.setState(
       {
-        bf: bmiDisplay,
-        bmi: bfDisplay,
-        tdee: tdeeDisplay
+        bf: bf,
+        bmi: bmi,
+        bmiR: bmiR,
+        tdee: tdee
       }
     );
   }
 
     componentDidUpdate(prevProps, prevState) {
-    if (this.props.res !== prevProps.res) {
+    if (this.props.data !== prevProps.data) {
       this.setDisplay();
     }
   }
   
     render() {
 
-     const {bmi, bf, tdee} = this.state; 
+     const {bmi, bf, tdee, bmiR, bfR, tdeeA} = this.state; 
+
+    const StatCard = (props) =>  (
+      <Card body >
+        <CardTitle>{props.title}</CardTitle>
+        <CardText>{props.stat}</CardText>
+        <CardText>{props.about}</CardText>
+      </Card>
+      );
       
       return (
-        <Col className="statGroup">
-         
-        <header>
-          <h4>Your Stats</h4>
-        </header>
-        <hr></hr>
+       
+    <Col className="statGroup">
 
-        <div>
-        <Card body >
-        <CardTitle>Body Mass Index</CardTitle>
-        <CardText>{bmi}</CardText>
-      </Card>
-
-      <Card body >
-        <CardTitle>Body Fat Percentage</CardTitle>
-        <CardText>{bf}</CardText>
-      </Card>
-
-      <Card body >
-        <CardTitle>Total Daily Energy Expenditure</CardTitle>
-        <CardText>{tdee}</CardText>          
-      </Card>
-
-
-        </div>
-  
-      </Col>
-
-
-        
+    <header>
+      <h4>Your Stats</h4>
+    </header>
+    <hr></hr>
+    <div>
+      <StatCard title="Body Mass Index"
+        stat={bmi}
+        about={bmiR} />
+      <StatCard title="Body Fat Percentage"
+        stat={bf} 
+        about={bfR}/>
+      <StatCard title="Total Daily Energy Expenditure"
+        stat={tdee} 
+        about={tdeeA}/>
+    </div>
+  </Col>
       );
     }
   }
@@ -108,51 +125,20 @@ class Stats extends React.Component {
   export default Stats;
 
 
-{/*}
-
-  import React from "react";
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
-
-
-
-class Stats extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        selectedProduct: {},
-        stat: this.props.stat,
-        error: "error"
-      };
-      }
-
-
-
-      function Comment(props) {
+{/*}   function Comment(props) {
         return (
-          <div className="Comment">
-            <div className="UserInfo">
-              <Avatar user={props.author} />
-              <div className="UserInfo-name">
-                {props.author.name}
-              </div>
-            </div>
-            <div className="Comment-text">
-              {props.text}
-            </div>
-            <div className="Comment-date">
-              {formatDate(props.date)}
-            </div>
-          </div>
+         <React.Fragment >
+          <Card body >
+        <CardTitle>{props.title}</CardTitle>
+        <CardText>{props.stat}</CardText>
+        <CardText>{props.about}</CardText>
+      </Card>
+        </React.Fragment>
+
         );
       }
     
-  
-    render() {
-      const {tdee, bf, bmi} = this.props;
-      
 
-      
   return (
 
     <Col className="statGroup">
@@ -163,13 +149,14 @@ class Stats extends React.Component {
       <hr></hr>
       <div>
         <StatCard title="Body Mass Index"
-          stat={bmi} />
+          stat={bmi}
+          about=(bmiR) />
         <StatCard title="Body Fat Percentage"
-          stat={bf} />
+          stat={bf} 
+          about="bf range"/>
         <StatCard title="Total Daily Energy Expenditure"
-          stat={tdee} />
-        {/*<StatCard title="Total Daily Energy Expenditure"
-       stat={props.tdee} /> 
+          stat={tdee} 
+          about="TDEE about"/>
       </div>
     </Col>
 
