@@ -2,31 +2,29 @@ import React from "react";
 import Stats from "./statDisplay";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
-import { InputGroup, InputGroupText, InputGroupAddon} from 'reactstrap';
+import { InputGroup, InputGroupText, InputGroupAddon } from 'reactstrap';
 
 class CalcForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      form:""
+      form: "",
+      data: { gender: "female", date: "2019-09-11", age: "30", weight: "120", feet: "5", inches: "5", hips: "34", waist: "25", neck: "12", activity: "1.375" }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
-
   setFormData() {
     const lastEntry = this.props.prevForm[0];
-    console.log(lastEntry);
+    // console.log(lastEntry);
     const form = "form";
- 
     this.setState(
       {
         form: lastEntry
       }
     );
   }
-
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.prevForm !== prevProps.prevForm) {
@@ -35,21 +33,20 @@ class CalcForm extends React.Component {
   }
 
   handleSubmit(event) {
-   
-    
-    const data = new FormData(event.target);
 
+    const data = new FormData(event.target);
     const dataObj = Object.fromEntries(data);
     console.log(dataObj);
     const stringdata = JSON.stringify(dataObj, null, 2);
     console.log(stringdata);
-    
+
     this.setState({
       res: stringdata,
-      data: dataObj
+      data: dataObj,
+      form: dataObj
     });
     event.preventDefault();
-    
+
     // fetch('/api/form-submit-url', {
     //   method: 'POST',
     //   body: data,
@@ -59,31 +56,27 @@ class CalcForm extends React.Component {
 
   render() {
 
-    const {gender, date, age, weight, feet, inches, hips, waist, neck, activity} = this.state.form;
+    const { gender, date, age, weight, feet, inches, hips, waist, neck, activity } = this.state.data;
 
-    const ActivityGroup = (props) => (
+    const InputGroup = (props) => (
+      <Col className={props.className}>
+        <Label htmlFor={props.id}>{props.title}
+          <Input id={props.id} name={props.id} type={props.type} defaultValue={props.default} placeholder={props.placeholder} min={props.min} max={props.max} required />
+          {/*} <span className="heightSpan">Inches</span> */}
+        </Label>
+      </Col>
+    );
+
+    const RadioGroup = (props) => (
       <FormGroup check>
-                  <Label htmlFor={props.htmlFor} check>
-                    <Input id={props.id} name="activity" type="radio" value={props.value} required />{' '}
-                    {props.title}</Label>
+        <Label htmlFor={props.id} check>
+          <Input id={props.id} name={props.name} type="radio" value={props.value}
+            defaultChecked={props.checked} required />{' '}
+          {props.title}
+        </Label>
       </FormGroup>
     );
 
-
-    
-    const HeightGroup = (props) => (
-      <Col className="heightRow">
-      <Label htmlFor={props.htmlFor}>
-        <Input id={props.id} name={props.name} type="number" defaultValue={props.default} placeholder='Inches' min={props.min} max={props.max} required />
-       {/*} <span className="heightSpan">Inches</span> */}
-      </Label>
-    </Col>
-    );
-
-
-
-
-   
 
     return (
       <Container className="calcAndStat">
@@ -96,120 +89,54 @@ class CalcForm extends React.Component {
 
             <Row form>
               <Col >
-
                 <FormGroup tag="fieldset" row>
                   <legend className="col-form-label col-sm-2">Gender</legend>
 
-                  <FormGroup check>
-                    <Label check>
-                      <Input id="female" name="gender" type="radio" value={'female'} defaultChecked />{' '}
-                      Female
-                    </Label>
-                  </FormGroup>
+                  <RadioGroup id="female" title="Female" name="gender"
+                    value="female" checked={gender === 'female'} />
 
-                  <FormGroup check>
-                    <Label check>
-                      <Input id="male" name="gender" type="radio" value={'male'} required />{' '}
-                      Male
-                    </Label>
-                  </FormGroup>
+                  <RadioGroup id="male" title="Male" name="gender"
+                    value="male" checked={gender === 'male'} />
+
                 </FormGroup>
               </Col>
 
-              <Col>
-                <Label htmlFor="date"> Date
-                  <Input id="date" name="date" type="date" defaultValue={'2019-09-11'} required />
-                </Label>
-              </Col>
-            </Row>
+              <InputGroup id="date" type="date" default={date} />
 
+            </Row>
 
             <Row form>
 
-          {/*} <Col>
-                <FormGroup className="inputRow basicsRow ">
-                  <Label htmlFor="age"> Age
-                    <Input id="age" name="age" type="number" defaultValue="28" min="18" max="99" required />
-                  </Label>
-                </FormGroup>
-              </Col>  */}
-
-              <Col>
-                <FormGroup className="inputRow basicsRow ">
-                  <Label htmlFor="age"> Age 
-                    <Input id="age" name="age" type="number" defaultValue={age}  min="18" max="99" required />
-                  </Label>
-                </FormGroup>
-              </Col>  
-
-  
-
-              <Col>
-                <Label htmlFor="weight"> Weight
-                <Input name="weight" type="number" defaultValue="115" min="85" max="600" required />
-                </Label>
-              </Col>
+              <InputGroup id="age" title="Age" type="number"
+                min="18" max="99" default={age} />
+              <InputGroup id="weight" title="Weight" type="number"
+                min="85" max="600" default={weight} />
 
             </Row>
-
 
             <FormGroup >
               <Label htmlFor="Height">
                 Height </Label>
               <Row form>
 
-                <Col className="heightRow">
-                  <InputGroup>
-                  
-                    <Input id="feet" name="feet" type="number" defaultValue="5" placeholder='Feet' min="4" max="7" required />
-                    <InputGroupAddon addonType="append">Feet</InputGroupAddon>
-                   
-                    </InputGroup>
-                    {/*<span className="heightSpan">Feet</span> */}
-                 
-                </Col>
-                
-                <HeightGroup 
-                htmlFor="inches" id="inches" name="inches"
-                min="0" max="11" default={this.state.form.inches}/>
-
-               {/*} <Col className="heightRow">
-                  <Label htmlFor="inches">
-                    <Input id="inches" name="inches" type="number" defaultValue="3" placeholder='Inches' min="0" max="11" required />
-                   {/*} <span className="heightSpan">Inches</span> 
-                  </Label>
-                </Col>  */}
+                <InputGroup id="feet" className="heightRow" placeholder="Feet" type="number"
+                  min="4" max="7" default={feet} />
+                <InputGroup id="inches" className="heightRow" placeholder="Inches" type="number"
+                  min="0" max="11" default={inches} />
 
               </Row>
-
             </FormGroup>
 
-          <hr></hr>
-
-
+            <hr></hr>
             <FormGroup >
               <Label htmlFor="measurements" className="fieldBold">
                 Measurements (Inches)</Label>
-              {/*} <legend className="col-form-label col-sm-2">Height</legend>  */}
               <Row form>
 
-                <Col >
-                  <Label htmlFor="hips"> Hips
-                    <Input id="hips" name="hips" type="number" defaultValue="34" min="25" max="60" required />
-                  </Label>
-                </Col>
+                <InputGroup id="hips" title="Hips" type="number" default={hips} />
+                <InputGroup id="waist" title="Hips" type="number" default={waist} />
+                <InputGroup id="neck" title="Hips" type="number" default={neck} />
 
-                <Col >
-                  <Label htmlFor="waist"> Waist
-                    <Input id="waist" name="waist" type="number" defaultValue="25" min="18" max="50" required />
-                  </Label>
-                </Col>
-
-                <Col >
-                  <Label htmlFor="neck"> Neck
-                   <Input id="neck" name="neck" type="number" defaultValue="12" min="10" max="26" required />
-                  </Label>
-                </Col>
               </Row>
             </FormGroup>
 
@@ -217,39 +144,20 @@ class CalcForm extends React.Component {
               <FormGroup tag="fieldset" row>
                 <legend className="col-form-label col-sm-2">Activity Level</legend>
 
-                 
-                  <ActivityGroup 
-                    id="none"
-                    htmlFor="none"
-                    title="None"
-                    value= "1.2"
-                    type="radio"
-                    name="activity"
-                    /> 
+                <RadioGroup id="none" title="None" name="activity"
+                  value="1.2" checked={activity === '1.2'} />
 
-                <FormGroup check>
-                  <Label htmlFor="light" check>
-                    <Input id="light" name="activity" type="radio" value="1.375" defaultChecked required />{' '}
-                    Light</Label>
-                </FormGroup>
+                <RadioGroup id="light" title="Light" name="activity"
+                  value="1.375" checked={activity === '1.375'} />
 
-                <FormGroup check>
-                  <Label htmlFor="normal" check>
-                    <Input id="normal" name="activity" type="radio" value="1.55" required />{' '}
-                    Normal</Label>
-                </FormGroup>
+                <RadioGroup id="normal" title="Normal" name="activity"
+                  value="1.55" checked={activity === '1.55'} />
 
-                <FormGroup check>
-                  <Label htmlFor="extra" check>
-                    <Input id="extra" name="activity" type="radio" value="1.725" required />{' '}
-                    Extra</Label>
-                </FormGroup>
+                <RadioGroup id="extra" title="Extra" name="activity"
+                  value="1.725" checked={activity === '1.725'} />
 
-                <FormGroup check>
-                  <Label htmlFor="heavy" check>
-                    <Input id="heavy" name="activity" type="radio" value="1.9" required />{' '}
-                    Heavy</Label>
-                </FormGroup>
+                <RadioGroup id="heavy" title="Heavy" name="activity"
+                  value="1.9" checked={activity === '1.9'} />
 
               </FormGroup>
             </Row>
@@ -261,10 +169,10 @@ class CalcForm extends React.Component {
 
 
         <hr></hr>
-      <Stats  
-      res={this.state.res}
-      data={this.state.data}
-        />  
+        <Stats
+          res={this.state.res}
+          data={this.state.data}
+        />
 
         <br></br>
 
