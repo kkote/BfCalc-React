@@ -8,7 +8,9 @@ import Table from "./components/table";
 import Login from "./components/login";
 import Chart from "./components/chart";
 import MyForm from "./components/exampleform"; */}
-
+const apiURL=`${process.env.REACT_APP_URL}`
+// console.log(process.env.REACT_APP_URL)
+console.log(apiURL)
 
 class App extends React.Component {
   constructor(props) {
@@ -46,7 +48,7 @@ class App extends React.Component {
       return response;
     }
 
-    fetch(`https://8qkziweyo4.execute-api.us-west-2.amazonaws.com/dev/api/user/stats`).then(handleErrors).then(res => res.json()).then(result => {
+    fetch(`${apiURL}dev/api/user/stats`).then(handleErrors).then(res => res.json()).then(result => {
       // console.log(result);
       // console.log(result[0]);
 

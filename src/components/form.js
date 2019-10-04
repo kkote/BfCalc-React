@@ -4,6 +4,11 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Container, Row, Col } from 'reactstrap';
 import { InputGroup, InputGroupText, InputGroupAddon } from 'reactstrap';
 
+const apiURL=`${process.env.REACT_APP_URL}`
+// console.log(process.env.REACT_APP_URL)
+console.log(apiURL)
+
+
 class CalcForm extends React.Component {
   constructor() {
     super();
@@ -33,8 +38,11 @@ class CalcForm extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
 
     const data = new FormData(event.target);
+    console.log('submit');
+
     const dataObj = Object.fromEntries(data);
     console.log(dataObj);
     const stringdata = JSON.stringify(dataObj, null, 2);
@@ -45,12 +53,26 @@ class CalcForm extends React.Component {
       data: dataObj,
       form: dataObj
     });
-    event.preventDefault();
+    
 
-    // fetch('/api/form-submit-url', {
-    //   method: 'POST',
-    //   body: data,
-    // });
+    fetch(`${apiURL}dev/api/user/stats`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      mode: "cors",
+      body: stringdata
+    }).then(response => {
+      if (response.status >= 200 && response.status < 300) {
+          // return response;
+          console.log(response);
+          // window.location.reload();
+        } else {
+         console.log('Somthing happened wrong');
+        }
+  }).catch(err => err);
+
+
   }
 
 
@@ -94,7 +116,6 @@ class CalcForm extends React.Component {
 
                   <RadioGroup id="female" title="Female" name="gender"
                     value="female" checked={gender === 'female'} />
-
                   <RadioGroup id="male" title="Male" name="gender"
                     value="male" checked={gender === 'male'} />
 
@@ -107,10 +128,8 @@ class CalcForm extends React.Component {
 
             <Row form>
 
-              <InputGroup id="age" title="Age" type="number"
-                min="18" max="99" default={age} />
-              <InputGroup id="weight" title="Weight" type="number"
-                min="85" max="600" default={weight} />
+              <InputGroup id="age" title="Age" type="number" min="18" max="99" default={age} />
+              <InputGroup id="weight" title="Weight" type="number" min="85" max="600" default={weight} />
 
             </Row>
 
@@ -146,22 +165,17 @@ class CalcForm extends React.Component {
 
                 <RadioGroup id="none" title="None" name="activity"
                   value="1.2" checked={activity === '1.2'} />
-
                 <RadioGroup id="light" title="Light" name="activity"
                   value="1.375" checked={activity === '1.375'} />
-
                 <RadioGroup id="normal" title="Normal" name="activity"
                   value="1.55" checked={activity === '1.55'} />
-
                 <RadioGroup id="extra" title="Extra" name="activity"
                   value="1.725" checked={activity === '1.725'} />
-
                 <RadioGroup id="heavy" title="Heavy" name="activity"
                   value="1.9" checked={activity === '1.9'} />
 
               </FormGroup>
             </Row>
-
             <button>Calculate </button>
           </Form>
 
