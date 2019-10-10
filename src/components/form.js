@@ -19,7 +19,6 @@ class CalcForm extends React.Component {
     
   }
 
-
   setFormData() {
     const lastEntry = this.props.prevForm[0];
     // console.log(lastEntry);
@@ -36,8 +35,6 @@ class CalcForm extends React.Component {
       this.setFormData();
     }
   }  
-
-
 
 
   render() {
@@ -125,23 +122,16 @@ class CalcForm extends React.Component {
             </Row>
             <button>Calculate </button>
           </Form>
-
         </Col>
 
-
         <hr></hr>
+        <Stats
+          data={this.props.fromForm}
+        /> 
        {/*} <Stats
           res={this.state.res}
           data={this.state.data}
         />  /*}
-
-        <br></br>
-
-        {/* {this.state.res && (
-            <div className="res-block">
-            <h3>Data to be sent:</h3>
-            <pre>FormData {this.state.res}</pre>
-            </div>
         )}  */}
 
       </Container>
