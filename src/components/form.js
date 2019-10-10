@@ -1,8 +1,6 @@
 import React from "react";
-import Stats from "./statDisplay";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { Container, Row, Col } from 'reactstrap';
-import { InputGroup, InputGroupText, InputGroupAddon } from 'reactstrap';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 const apiURL=`${process.env.REACT_APP_URL}`
 // console.log(process.env.REACT_APP_URL)
@@ -22,7 +20,7 @@ class CalcForm extends React.Component {
   setFormData() {
     const lastEntry = this.props.prevForm[0];
     // console.log(lastEntry);
-    const form = "form";
+    
     this.setState(
       {
         form: lastEntry
@@ -62,7 +60,6 @@ class CalcForm extends React.Component {
 
 
     return (
-      <Container className="calcAndStat">
         <Col className="calcForm">
           <header>
             <h4>Your Measurements</h4>
@@ -124,17 +121,7 @@ class CalcForm extends React.Component {
           </Form>
         </Col>
 
-        <hr></hr>
-        <Stats
-          data={this.props.fromForm}
-        /> 
-       {/*} <Stats
-          res={this.state.res}
-          data={this.state.data}
-        />  /*}
-        )}  */}
 
-      </Container>
     );
   }
 }

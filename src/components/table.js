@@ -17,7 +17,7 @@ class Table extends React.Component {
     render() {
         const StatList = ({ lists }) => (
 
-            Object.keys(this.props.statlist).map(key => (
+            Object.keys(this.props.statlist).reverse().map(key => (
                 <Each
                     key={key}
                     item={this.props.statlist[key]}
