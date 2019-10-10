@@ -16,7 +16,7 @@ class CalcForm extends React.Component {
       form: "",
       data: { gender: "female", date: "2019-09-11", age: "30", weight: "120", feet: "5", inches: "5", hips: "34", waist: "25", neck: "12", activity: "1.375" }
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
 
 
@@ -35,45 +35,9 @@ class CalcForm extends React.Component {
     if (this.props.prevForm !== prevProps.prevForm) {
       this.setFormData();
     }
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    const data = new FormData(event.target);
-    console.log('submit');
-
-    const dataObj = Object.fromEntries(data);
-    console.log(dataObj);
-    const stringdata = JSON.stringify(dataObj, null, 2);
-    console.log(stringdata);
-
-    this.setState({
-      res: stringdata,
-      data: dataObj,
-      form: dataObj
-    });
-    
-
-    fetch(`${apiURL}dev/api/user/stats`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      mode: "cors",
-      body: stringdata
-    }).then(response => {
-      if (response.status >= 200 && response.status < 300) {
-          // return response;
-          console.log(response);
-          // window.location.reload();
-        } else {
-         console.log('Somthing happened wrong');
-        }
-  }).catch(err => err);
+  }  
 
 
-  }
 
 
   render() {
@@ -107,74 +71,57 @@ class CalcForm extends React.Component {
             <h4>Your Measurements</h4>
           </header>
           <hr></hr>
-          <Form onSubmit={this.handleSubmit}>
+         {/*} <Form onSubmit={this.handleSubmit}> */}
+         <Form onSubmit={this.props.handleSubmit}>
 
             <Row form>
               <Col >
                 <FormGroup tag="fieldset" row>
                   <legend className="col-form-label col-sm-2">Gender</legend>
-
-                  <RadioGroup id="female" title="Female" name="gender"
-                    value="female" checked={gender === 'female'} />
-                  <RadioGroup id="male" title="Male" name="gender"
-                    value="male" checked={gender === 'male'} />
-
+                  <RadioGroup id="female" title="Female" name="gender" value="female" checked={gender === 'female'} />
+                  <RadioGroup id="male" title="Male" name="gender" value="male" checked={gender === 'male'} />
                 </FormGroup>
               </Col>
 
               <InputGroup id="date" type="date" default={date} />
-
             </Row>
 
             <Row form>
-
               <InputGroup id="age" title="Age" type="number" min="18" max="99" default={age} />
               <InputGroup id="weight" title="Weight" type="number" min="85" max="600" default={weight} />
-
             </Row>
 
             <FormGroup >
               <Label htmlFor="Height">
                 Height </Label>
               <Row form>
-
-                <InputGroup id="feet" className="heightRow" placeholder="Feet" type="number"
-                  min="4" max="7" default={feet} />
-                <InputGroup id="inches" className="heightRow" placeholder="Inches" type="number"
-                  min="0" max="11" default={inches} />
-
+                <InputGroup id="feet" className="heightRow" placeholder="Feet" type="number" min="4" max="7" default={feet} />
+                <InputGroup id="inches" className="heightRow" placeholder="Inches" type="number" min="0" max="11" default={inches} />
               </Row>
             </FormGroup>
 
             <hr></hr>
             <FormGroup >
+
               <Label htmlFor="measurements" className="fieldBold">
                 Measurements (Inches)</Label>
               <Row form>
-
                 <InputGroup id="hips" title="Hips" type="number" default={hips} />
                 <InputGroup id="waist" title="Hips" type="number" default={waist} />
                 <InputGroup id="neck" title="Hips" type="number" default={neck} />
-
               </Row>
             </FormGroup>
 
             <Row form>
               <FormGroup tag="fieldset" row>
                 <legend className="col-form-label col-sm-2">Activity Level</legend>
-
-                <RadioGroup id="none" title="None" name="activity"
-                  value="1.2" checked={activity === '1.2'} />
-                <RadioGroup id="light" title="Light" name="activity"
-                  value="1.375" checked={activity === '1.375'} />
-                <RadioGroup id="normal" title="Normal" name="activity"
-                  value="1.55" checked={activity === '1.55'} />
-                <RadioGroup id="extra" title="Extra" name="activity"
-                  value="1.725" checked={activity === '1.725'} />
-                <RadioGroup id="heavy" title="Heavy" name="activity"
-                  value="1.9" checked={activity === '1.9'} />
-
+                <RadioGroup id="none" title="None" name="activity" value="1.2" checked={activity === '1.2'} />
+                <RadioGroup id="light" title="Light" name="activity" value="1.375" checked={activity === '1.375'} />
+                <RadioGroup id="normal" title="Normal" name="activity" value="1.55" checked={activity === '1.55'} />
+                <RadioGroup id="extra" title="Extra" name="activity" value="1.725" checked={activity === '1.725'} />
+                <RadioGroup id="heavy" title="Heavy" name="activity" value="1.9" checked={activity === '1.9'} />
               </FormGroup>
+
             </Row>
             <button>Calculate </button>
           </Form>
@@ -183,10 +130,10 @@ class CalcForm extends React.Component {
 
 
         <hr></hr>
-        <Stats
+       {/*} <Stats
           res={this.state.res}
           data={this.state.data}
-        />
+        />  /*}
 
         <br></br>
 

@@ -3,6 +3,7 @@ import './App.css';
 import Header from "./components/header";
 import CalcForm from "./components/form";
 import Table from "./components/table";
+import List from './components/list';
 {/*import Footer from "./components/footer";
 
 import Login from "./components/login";
@@ -35,8 +36,13 @@ class App extends React.Component {
           'weight': '00'
         }
       ],
+      formitems: '',
+      statList: [],
+      form: ""
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   handleDataChange() {
     function handleErrors(response) {
@@ -60,16 +66,35 @@ class App extends React.Component {
   }
 
 
-  componentDidMount() {
-    console.log("Did Mount");
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log("handleSubmit");
+    console.log(this.state.formitems);
+    console.log(this.state.statList);
+    const data = new FormData(event.target);
+    const dataObj = Object.fromEntries(data);
+    // console.log('daraObj');
+    // console.log(dataObj);
+    const stringdata = JSON.stringify(dataObj, null, 2);
+    // console.log('stringdata');
+    // console.log(stringdata);
 
-    this.handleDataChange();
+    this.setState({
+      formitems: dataObj,
+      statList: [...this.state.statList, this.state.formitems]
+    });
   }
 
 
+  componentDidMount() {
+    console.log("Did Mount");
+    this.handleDataChange();
+  }
+
+  
+
+
   render() {
-
-
 
     return (
       <div className="App">
@@ -80,12 +105,14 @@ class App extends React.Component {
           <hr />
           <CalcForm
           prevForm={this.state.list}
+          handleSubmit={this.handleSubmit}
            />
           <hr />
           <br></br>
-          <Table
+
+         {/*}  <Table
             statlist={this.state.list} />
-         {/*} <Stats
+            <Stats
             bmi={data[0].bmi}
             bf={stat[0].bf}
             tdee={stat[0].tdee}
