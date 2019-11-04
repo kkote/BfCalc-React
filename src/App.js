@@ -10,7 +10,6 @@ import { Container} from 'reactstrap';
 import Login from "./components/login";
 import Chart from "./components/chart"; */}
 const apiURL=`${process.env.REACT_APP_URL}`
-console.log(apiURL)
 
 class App extends React.Component {
   constructor(props) {
@@ -51,10 +50,6 @@ class App extends React.Component {
     }
 
     fetch(`${apiURL}dev/api/user/stats`).then(handleErrors).then(res => res.json()).then(result => {
-      // console.log(result);
-      // console.log(result[0]);
-
-      // var resulttext = result.items;
       this.setState({list: result, isLoaded: true, error: ""});
     }, error => {
       this.setState({error: "Please input valid search..."});
@@ -67,24 +62,16 @@ class App extends React.Component {
     console.log("handleSubmit");
     const data = new FormData(event.target);
     const dataObj = Object.fromEntries(data);
-   
     // const stringdata = JSON.stringify(dataObj, null, 2);
-
-    this.setDisplay(dataObj);
-    // console.log('stringdata');
-    // console.log(stringdata);
-    
+    const newData = this.setDisplay(dataObj);
+    // console.log(newData);
 
     this.setState({
-      formitems: dataObj,
-      statList: [...this.state.statList, dataObj]
+      formitems: newData,
+      statList: [...this.state.statList, newData]
     });
-
-    
-    console.log(this.state.statList);
    
   }
-
 
   componentDidMount() {
     console.log("Did Mount");
@@ -92,11 +79,8 @@ class App extends React.Component {
   }
 
 
-
   setDisplay(data) {
-    // const data = this.state.formitems;
     console.log("setDisplay,  data");
-    console.log(data)
 
     let {gender, age, feet, inches, waist, weight, neck, hips, activity} = data;
     waist = parseInt(waist);
@@ -107,28 +91,26 @@ class App extends React.Component {
    
     // bmi = Body Mass Index;  bf = Body Fat Percentage; tdee = Total Daily Energy Expenditure
     const bmi = ((weight / (height*height)) * 703).toPrecision(3);
-    console.log(bmi)
     const bmiR = bmiRange(bmi);
     const bf = findBf(gender, waist, neck, height, hips).toPrecision(3);
-    console.log(bf);
     const tdee = findTdee(gender, activity, weight, height, age).toPrecision(4);
-
 
     data["bf"]=bf;
     data["bmi"]=bmi;
     data["tdee"]=tdee;
-    console.log(data)
+    data["bmiR"]=bmiR;
+    // console.log(this.state.formitems)
+    // console.log(data)
 
-
-
-    this.setState(
-      {
-        bf: bf,
-        bmi: bmi,
-        bmiR: bmiR,
-        tdee: tdee
-      }
-    );
+    // this.setState(
+    //   {
+    //     bf: bf,
+    //     bmi: bmi,
+    //     bmiR: bmiR,
+    //     tdee: tdee
+    //   }
+    // );
+    return(data)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -138,7 +120,6 @@ class App extends React.Component {
   }
 
   
-
   render() {
 
     return (
@@ -149,38 +130,25 @@ class App extends React.Component {
         <div className='main'>
           <hr />
           <Container className="calcAndStat">
-          <CalcForm
-          prevForm={this.state.statList}
-          fromForm={this.state.formitems}
-          handleSubmit={this.handleSubmit}
-           />
+            <CalcForm
+              prevForm={this.state.statList}
+              fromForm={this.state.formitems}
+              handleSubmit={this.handleSubmit}
+            />
             <Stats
-          data={this.state.formitems}
-          tdee={this.state.tdee}
-          tdeeA={this.state.tdeeA}
-          bmi={this.state.bmi}
-          bmiR={this.state.bmiR}
-          bf={this.state.bf}
-          bfR={this.state.bfR}
-        /> 
-        </Container>
+              data={this.state.formitems}
+              tdeeA={this.state.tdeeA}
+              bfR={this.state.bfR}
+            />
+          </Container>
           <hr />
           <br></br>
-         <Table
-            statlist={this.state.statList} />  
-
-          </div>
-
-         {/*}  
-            <Stats
-            bmi={data[0].bmi}
-            bf={stat[0].bf}
-            tdee={stat[0].tdee}
-          /> 
-          <Chart />
-    <Footer />  */}
-     
+          <Table className="container"
+            statlist={this.state.statList} />
         </div>
+        {/*}  
+    <Footer />  */}
+      </div>
     );
   }
 }

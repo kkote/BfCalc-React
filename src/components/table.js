@@ -33,6 +33,10 @@ class Table extends React.Component {
                     <td>{item.bmi}</td>
                     <td>{item.bf}</td>
                     <td>{item.tdee}</td>
+
+                  {/*  <td> <i className="" type="button" onClick={() => this.clickToRemove(item)}> Delete </i></td> */ }
+
+
                 </tr >
         );
 

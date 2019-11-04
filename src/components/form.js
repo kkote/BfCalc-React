@@ -2,30 +2,20 @@ import React from "react";
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { Row, Col } from 'reactstrap';
 
-const apiURL=`${process.env.REACT_APP_URL}`
-// console.log(process.env.REACT_APP_URL)
-console.log(apiURL)
-
 
 class CalcForm extends React.Component {
   constructor() {
     super();
     this.state = {
       form: "",
-      data: { gender: "female", date: "2019-09-11", age: "30", weight: "120", feet: "5", inches: "5", hips: "34", waist: "25", neck: "12", activity: "1.375" }
+      data: { gender: "female", date: "2019-09-11", age: "30", weight: "135", feet: "5", inches: "5", hips: "36", waist: "28", neck: "12", activity: "1.375" }
     };
-    
   }
 
   setFormData() {
     const lastEntry = this.props.prevForm[0];
-    // console.log(lastEntry);
     
-    this.setState(
-      {
-        form: lastEntry
-      }
-    );
+    this.setState( {form: lastEntry});
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -43,7 +33,6 @@ class CalcForm extends React.Component {
       <Col className={props.className}>
         <Label htmlFor={props.id}>{props.title}
           <Input id={props.id} name={props.id} type={props.type} defaultValue={props.default} placeholder={props.placeholder} min={props.min} max={props.max} required />
-          {/*} <span className="heightSpan">Inches</span> */}
         </Label>
       </Col>
     );
@@ -101,14 +90,16 @@ class CalcForm extends React.Component {
                 Measurements (Inches)</Label>
               <Row form>
                 <InputGroup id="hips" title="Hips" type="number" default={hips} />
-                <InputGroup id="waist" title="Hips" type="number" default={waist} />
-                <InputGroup id="neck" title="Hips" type="number" default={neck} />
+                <InputGroup id="waist" title="Waist" type="number" default={waist} />
+                <InputGroup id="neck" title="Neck" type="number" default={neck} />
               </Row>
             </FormGroup>
 
             <Row form>
+            <Label htmlFor="activity" className="fieldBold">
+                Activity Level</Label>
               <FormGroup tag="fieldset" row>
-                <legend className="col-form-label col-sm-2">Activity Level</legend>
+               
                 <RadioGroup id="none" title="None" name="activity" value="1.2" checked={activity === '1.2'} />
                 <RadioGroup id="light" title="Light" name="activity" value="1.375" checked={activity === '1.375'} />
                 <RadioGroup id="normal" title="Normal" name="activity" value="1.55" checked={activity === '1.55'} />
