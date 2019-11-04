@@ -5,8 +5,6 @@
 
 
 Enter your measurements to Calculate body fat percentage/range, body mass index/range and lean mass.
-Adds measurements to table and chart progress.
-
 
 
 
@@ -19,14 +17,7 @@ Calculator to keep track of body measurements, to losing weight, to gain weight,
 ## Built With
 
 * JavaScript
-* [Create React App](https://github.com/facebook/create-react-app).
-* [Startbootstrap](https://startbootstrap.com/template-overviews/sb-admin-2/) - Layout
-* [CoreUI](https://coreui.io/) - Layout
-* [Chart.js](http://www.chartjs.org/) - Chart
-
-
-
-
+* [React](https://github.com/facebook/create-react-app)
 
 
 ## Author
