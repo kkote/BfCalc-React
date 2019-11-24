@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "homepage": "https://kkote.github.io/BfCalc-React/",
+  "homepage": "https://kkote.github.io/bf-calc-react/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
