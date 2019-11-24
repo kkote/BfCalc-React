@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/BfCalc-React/static/css/main.54d72895.chunk.css",
-    "main.js": "/BfCalc-React/static/js/main.d48ad10c.chunk.js",
-    "main.js.map": "/BfCalc-React/static/js/main.d48ad10c.chunk.js.map",
-    "runtime~main.js": "/BfCalc-React/static/js/runtime~main.270430fc.js",
-    "runtime~main.js.map": "/BfCalc-React/static/js/runtime~main.270430fc.js.map",
-    "static/css/2.266e55a5.chunk.css": "/BfCalc-React/static/css/2.266e55a5.chunk.css",
-    "static/js/2.d313295a.chunk.js": "/BfCalc-React/static/js/2.d313295a.chunk.js",
-    "static/js/2.d313295a.chunk.js.map": "/BfCalc-React/static/js/2.d313295a.chunk.js.map",
-    "index.html": "/BfCalc-React/index.html",
-    "precache-manifest.e8a3fd7c7da42c84e1149e8f0ccdb451.js": "/BfCalc-React/precache-manifest.e8a3fd7c7da42c84e1149e8f0ccdb451.js",
-    "service-worker.js": "/BfCalc-React/service-worker.js",
-    "static/css/2.266e55a5.chunk.css.map": "/BfCalc-React/static/css/2.266e55a5.chunk.css.map",
-    "static/css/main.54d72895.chunk.css.map": "/BfCalc-React/static/css/main.54d72895.chunk.css.map"
+    "main.css": "/bf-calc-react/static/css/main.a6c955c0.chunk.css",
+    "main.js": "/bf-calc-react/static/js/main.cd762850.chunk.js",
+    "main.js.map": "/bf-calc-react/static/js/main.cd762850.chunk.js.map",
+    "runtime~main.js": "/bf-calc-react/static/js/runtime~main.118ba6e7.js",
+    "runtime~main.js.map": "/bf-calc-react/static/js/runtime~main.118ba6e7.js.map",
+    "static/css/2.266e55a5.chunk.css": "/bf-calc-react/static/css/2.266e55a5.chunk.css",
+    "static/js/2.d313295a.chunk.js": "/bf-calc-react/static/js/2.d313295a.chunk.js",
+    "static/js/2.d313295a.chunk.js.map": "/bf-calc-react/static/js/2.d313295a.chunk.js.map",
+    "index.html": "/bf-calc-react/index.html",
+    "precache-manifest.2f144c37c35e48d5c21e4a77297f1937.js": "/bf-calc-react/precache-manifest.2f144c37c35e48d5c21e4a77297f1937.js",
+    "service-worker.js": "/bf-calc-react/service-worker.js",
+    "static/css/2.266e55a5.chunk.css.map": "/bf-calc-react/static/css/2.266e55a5.chunk.css.map",
+    "static/css/main.a6c955c0.chunk.css.map": "/bf-calc-react/static/css/main.a6c955c0.chunk.css.map"
   }
 }
