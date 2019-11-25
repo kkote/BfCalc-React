@@ -1,23 +1,34 @@
 
-
 # Body Stats Calculator
-> Enter measurements to calculate body fat and BMI.
+
+Enter your measurements to calculate body fat percentage, body mass index and total daily energy expenditure.
 
 
-Enter your measurements to Calculate body fat percentage/range, body mass index/range and lean mass.
+## Preview
+![Preview](https://kkote.netlify.com/static/skills-ac8dbafdf432c18a6e4d62a715e84ac3.svg)
 
 
 
-## Usage example
 
-Calculator to keep track of body measurements, to losing weight, to gain weight, or track fitness progress.
+# How to Use
+1. Clone or Download repo.
+2. cd into folder.
+3. Run  ``` npm install ```.
+5. Run  ``` npm start ```.
+5. Go to local dev port 8000 (http://localhost:8000)
+6. Make changes in src/ 
+
 
 
 
 ## Built With
 
-* JavaScript
+* [JavaScript]
 * [React](https://github.com/facebook/create-react-app)
+* [reactstrap](https://reactstrap.github.io/)
+* [gh-pages](https://pages.github.com/)
+
+
 
 
 ## Author
