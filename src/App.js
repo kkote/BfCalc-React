@@ -6,9 +6,8 @@ import Table from "./components/table";
 import Stats from "./components/statDisplay";
 import { bmiRange, findBf, findTdee } from './utils.js';
 import { Container} from 'reactstrap';
-{/*import Footer from "./components/footer";
-import Login from "./components/login";
-import Chart from "./components/chart"; */}
+import Footer from "./components/footer";
+
 const apiURL=`${process.env.REACT_APP_URL}`
 
 class App extends React.Component {
@@ -99,17 +98,7 @@ class App extends React.Component {
     data["bmi"]=bmi;
     data["tdee"]=tdee;
     data["bmiR"]=bmiR;
-    // console.log(this.state.formitems)
-    // console.log(data)
-
-    // this.setState(
-    //   {
-    //     bf: bf,
-    //     bmi: bmi,
-    //     bmiR: bmiR,
-    //     tdee: tdee
-    //   }
-    // );
+ 
     return(data)
   }
 
@@ -125,7 +114,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        {/*<Login />*/}
         <br></br>
         <div className='main'>
           <hr />
@@ -146,8 +134,8 @@ class App extends React.Component {
           <Table className="container"
             statlist={this.state.statList} />
         </div>
-        {/*}  
-    <Footer />  */}
+         
+    <Footer />  
       </div>
     );
   }

@@ -6,6 +6,13 @@ body {
   /* padding: 40px; */
 }
 
+.main {
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 100px;
+
+}
+
 input {
   display: inline-block;
   margin-bottom: 15px;
@@ -212,7 +219,7 @@ h4 {
 }
 
 .sidebar .sidebar-search {
-  padding: 15px;reao
+  padding: 15px;
 }
 
 label {
@@ -564,4 +571,17 @@ label {
   font-weight: bold;
   float: right;
   color: #333;
+}
+
+
+.footer {
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+  background: rgb(49, 56, 64) none repeat scroll 0% 0%;
+  color: white;
+  padding: 5rem 0px 4rem;
+  display: flex;
+  justify-content: center;
 }

@@ -6,9 +6,9 @@ const Footer = props => {
      <div className="footer">
         <div className="row">
           <div className="fullcolumn">
-            &copy; Body Stat Calculator By K. Kote
+            &copy; Body Stat Calculator By
             <span className="footerRight">
-              <a href="https://github.com/kkote">Github: kkote</a>
+              <a href="https://github.com/kkote"> K. Kote</a>
             </span>
           </div>
         </div>
