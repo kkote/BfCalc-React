@@ -4,10 +4,6 @@
 Enter your measurements to calculate body fat percentage, body mass index and total daily energy expenditure.
 
 
-## Preview
-![Preview](https://kkote.netlify.com/static/skills-ac8dbafdf432c18a6e4d62a715e84ac3.svg)
-
-
 
 
 # How to Use
@@ -23,7 +19,7 @@ Enter your measurements to calculate body fat percentage, body mass index and to
 
 ## Built With
 
-* [JavaScript]
+* JavaScript
 * [React](https://github.com/facebook/create-react-app)
 * [reactstrap](https://reactstrap.github.io/)
 * [gh-pages](https://pages.github.com/)
