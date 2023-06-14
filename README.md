@@ -1,9 +1,9 @@
 
 # Body Stats Calculator
 
-Enter your measurements to calculate body fat percentage, body mass index and total daily energy expenditure.
-
-
+Built a fitness-oriented web tool using JavaScript to calculate and display three essential fitness statistics based on user input.
+Implemented features to calculate body mass index (BMI), body fat percentage, and lean body mass.
+Provided users with valuable insights into their fitness progress.
 
 
 # How to Use
